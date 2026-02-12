@@ -5,25 +5,29 @@ namespace Rikai.Graphviz.DotFormat;
 // parts of this parser, in order of appearance
 // graph type
 // graph attributes
-// node attributes
-// edge attributes
+// graph node attributes
+// graph edge attributes
 // nodes (all nodes with additional attributes except label)
 // edges
 // node
 // edge
-public partial class GraphParser
+internal partial class GraphParser
 {
-	private string _edgeSymbol  = "->"; // todo: make this a setting
-	private string _indentChar  = "\t";
-	private int    _indentLevel = 0;
+	private        string _edgeSymbol = "";
+	private static string _indentChar = "   "; // todo: make this a setting
 
-	public string Parse(GraphType type)
+	internal string Parse(GraphType type)
 	{
 		if (type == GraphType.Directed)
 		{
+			_edgeSymbol = "--";
 			return "graph";
 		}
-		else return "digraph";
+		else
+		{
+			_edgeSymbol = "->";
+			return "digraph";
+		}
 	}
 
 	public string Parse(GraphEdges edges)
