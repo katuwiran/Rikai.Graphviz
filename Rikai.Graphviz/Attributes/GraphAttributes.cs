@@ -11,4 +11,15 @@ public class GraphAttributes
 	public RankDir? RankDir { get; set; }
 
 	public LayoutEngine? LayoutEngine { get; set; }
+
+	public bool IsEmpty => this is
+	{
+		Label          : null,
+		FontColor      : null,
+		FontName       : null,
+		BackgroundColor: null,
+		Splines        : null,
+		RankDir        : null,
+		LayoutEngine   : null,
+	};
 }
