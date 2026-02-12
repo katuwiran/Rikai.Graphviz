@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Rikai.Graphviz.DotFormat;
+namespace Rikai.Graphviz;
 
 // parts of this parser, in order of appearance
 // graph type

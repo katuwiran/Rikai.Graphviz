@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Rikai.Graphviz.DotFormat;
+namespace Rikai.Graphviz;
 
 internal partial class GraphParser
 {

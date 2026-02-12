@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Rikai.Graphviz.DotFormat;
+namespace Rikai.Graphviz;
 
 public class DotGenerator
 {
@@ -12,9 +12,14 @@ public class DotGenerator
 	string GraphNodes      { get; set; }
 	string GraphEdges      { get; set; }
 
-	public void Print()
+	public DotGenerator(Graph graph)
 	{
-		string dot =
+		_graph = graph;
+	}
+
+	public override string ToString()
+	{
+		return
 			$$"""
 			  {{_parser.ParseGraphType(_graph.Type)}} {
 			  {{_parser.ParseGraphAttributes(_graph.Attributes)}}
@@ -23,12 +28,11 @@ public class DotGenerator
 			  {{_parser.ParseGraphEdges(_graph.Edges)}}
 			  }
 			  """;
-		Console.WriteLine(dot);
 	}
-
-
-	public DotGenerator(Graph graph)
+	
+	public void Print()
 	{
-		_graph = graph;
+		Console.WriteLine(this.ToString());
 	}
+
 }
