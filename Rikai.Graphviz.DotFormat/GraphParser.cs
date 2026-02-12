@@ -16,7 +16,7 @@ internal partial class GraphParser
 	private        string _edgeSymbol = "";
 	private static string _indentChar = "   "; // todo: make this a setting
 
-	internal string Parse(GraphType type)
+	internal string ParseGraphType(GraphType type)
 	{
 		if (type == GraphType.Directed)
 		{
@@ -30,15 +30,18 @@ internal partial class GraphParser
 		}
 	}
 
-	internal string Parse(GraphAttributes attributes)
+	internal string ParseGraphAttributes(GraphAttributes attributes)
 	{
-		if (attributes.IsEmpty) { return ""; }
+		if (attributes.IsEmpty)
+		{
+			return "";
+		}
 
 		StringBuilder a = new();
-		a.AppendLine(Parse("label",     attributes.Label));
-		a.AppendLine(Parse("fontname",  attributes.FontName));
-		a.AppendLine(Parse("fontcolor", attributes.FontColor));
-		a.AppendLine(Parse("bgcolor",   attributes.BackgroundColor));
+		a.AppendLine(ParseAttribute("label",     attributes.Label));
+		a.AppendLine(ParseAttribute("fontname",  attributes.FontName));
+		a.AppendLine(ParseAttribute("fontcolor", attributes.FontColor));
+		a.AppendLine(ParseAttribute("bgcolor",   attributes.BackgroundColor));
 
 		string cleaned = string.Join(Environment.NewLine,
 		                             a.ToString().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
@@ -49,8 +52,8 @@ internal partial class GraphParser
 		                 """;
 		return IndentLines(result, 1);
 	}
-	
-	internal string Parse(NodeAttributes attributes)
+
+	internal string ParseGraphNodeAttributes(NodeAttributes attributes)
 	{
 		if (attributes.IsEmpty)
 		{
@@ -58,10 +61,10 @@ internal partial class GraphParser
 		}
 
 		StringBuilder a = new();
-		a.AppendLine(Parse("label",     attributes.Label));
-		a.AppendLine(Parse("fontname",  attributes.FontName));
-		a.AppendLine(Parse("fontcolor", attributes.FontColor));
-		a.AppendLine(Parse("fillcolor",   attributes.FillColor));
+		a.AppendLine(ParseAttribute("label",     attributes.Label));
+		a.AppendLine(ParseAttribute("fontname",  attributes.FontName));
+		a.AppendLine(ParseAttribute("fontcolor", attributes.FontColor));
+		a.AppendLine(ParseAttribute("fillcolor", attributes.FillColor));
 		a.AppendLine(Parse("shape", attributes.Shape));
 
 		string cleaned = string.Join(Environment.NewLine,
@@ -73,8 +76,9 @@ internal partial class GraphParser
 		                 """;
 		return IndentLines(result, 1);
 	}
-	
-	internal string Parse(GraphEdges edges)
+
+	internal string ParseGraphEdgeAttributes(EdgeAttributes attributes)
+	{
 	{
 		StringBuilder result = new();
 		foreach (Edge edge in edges.Edges)
@@ -85,7 +89,7 @@ internal partial class GraphParser
 		return result.ToString();
 	}
 
-	internal string Parse(Edge edge)
+	internal string ParseEdge(Edge edge)
 	{
 		return $$"""
 		         { {{ParseIds(edge.FromNodeIds)}}} {{_edgeSymbol}} { {{ParseIds(edge.ToNodeIds)}}}
@@ -114,8 +118,7 @@ internal partial class GraphParser
 		return label == null ? null : label;
 	}
 
-	internal static string Parse(string attribute, string? value)
-	{
+	internal static string ParseShape(string name, Shape? value)
 		return ParseAttributeValue(value) == null ? "" : $"{Indent(1)}\"{attribute}\" = \"{value}\"";
 	}
 	
@@ -129,12 +132,12 @@ internal partial class GraphParser
 		return ParseAttributeValue(value) == null ? "" : $"{Indent(1)}\"{attribute}\" = \"{value}\"";
 	}
 
-	internal static string Parse(Shape shape)
+	internal static string ParseArrowType(string name, ArrowType? value)
 	{
 		return ParseEnum(shape);
 	}
 
-	internal static string ParseEnum<T>(T input)
+	internal static string ParseLayout(string name, LayoutEngine? value)
 	{
 		return input.ToString().ToLower();
 	}
