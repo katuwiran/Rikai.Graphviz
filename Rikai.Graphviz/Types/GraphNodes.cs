@@ -1,6 +1,6 @@
 namespace Rikai.Graphviz;
 
-public class NodeCollection
+public class GraphNodes
 {
 	public NodeAttributes Attributes { get; set; } = new();
 }

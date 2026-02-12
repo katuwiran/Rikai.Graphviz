@@ -7,4 +7,7 @@ public class Graph
 	public NodeCollection  Nodes      { get; }      = new();
 	public EdgeCollection  Edges      { get; }      = new();
 	public GraphAttributes Attributes { get; set; } = new();
+
+	public GraphNodes Nodes { get; } = new();
+	public GraphEdges Edges { get; }
 }

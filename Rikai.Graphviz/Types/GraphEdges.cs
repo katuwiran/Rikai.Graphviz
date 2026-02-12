@@ -1,6 +1,6 @@
 namespace Rikai.Graphviz;
 
-public class EdgeCollection
+public class GraphEdges
 {
 	public EdgeAttributes Attributes { get; set; } = new();
 }
