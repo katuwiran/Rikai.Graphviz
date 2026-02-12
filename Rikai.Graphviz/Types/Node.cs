@@ -6,9 +6,9 @@ public class Node
 	public string         Id         { get; set; }
 	public string?        Label      { get; set; }
 
-	public Node(string label)
+	public Node(string id)
 	{
-		Label = label;
+		Id = id;
 	}
 
 	public Node(string id, string label)
