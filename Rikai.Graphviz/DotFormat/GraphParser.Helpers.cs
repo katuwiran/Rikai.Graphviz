@@ -10,7 +10,7 @@ internal partial class GraphParser
 
 		foreach (var id in ids)
 		{
-			result.Append($"{id} ");
+			result.Append($"\"{id}\" ");
 		}
 
 		return result.ToString();
