@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rikai.Graphviz", "Rikai.Gra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rikai.Graphviz.Binary", "Rikai.Graphviz.Binary\Rikai.Graphviz.Binary.csproj", "{6246CD04-5CDB-4437-9BB2-B7A3CD6175EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rikai.Graphviz.Translator", "Rikai.Graphviz.Translator\Rikai.Graphviz.Translator.csproj", "{144F4ABB-A418-4EE2-BF10-0709CC68F194}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rikai.Graphviz.DotFormat", "Rikai.Graphviz.DotFormat\Rikai.Graphviz.DotFormat.csproj", "{144F4ABB-A418-4EE2-BF10-0709CC68F194}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rikai.Graphviz.Samples", "Rikai.Graphviz.Samples\Rikai.Graphviz.Samples.csproj", "{AA6FCC1B-A825-417E-BE80-AD5414104C93}"
 EndProject
