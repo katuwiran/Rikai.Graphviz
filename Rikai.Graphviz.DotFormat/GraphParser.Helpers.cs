@@ -4,6 +4,23 @@ namespace Rikai.Graphviz.DotFormat;
 
 internal partial class GraphParser
 {
+	internal string ParseIds(IEnumerable<string> ids)
+	{
+		StringBuilder result = new();
+
+		foreach (var id in ids)
+		{
+			result.Append($"{id} ");
+		}
+
+		return result.ToString();
+	}
+
+	internal static string ParseAttribute(string name, string? value)
+	{
+		return value == null ? "" : FormatAttribute(name, value);
+	}
+	
 	internal static string Indent(int indentLevel)
 	{
 		return new StringBuilder().Insert(0, _indentChar, indentLevel).ToString();
