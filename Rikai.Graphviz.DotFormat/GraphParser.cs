@@ -30,12 +30,56 @@ internal partial class GraphParser
 		}
 	}
 
-	public string Parse(GraphEdges edges)
+	internal string Parse(GraphAttributes attributes)
+	{
+		if (attributes.IsEmpty) { return ""; }
+
+		StringBuilder a = new();
+		a.AppendLine(Parse("label",     attributes.Label));
+		a.AppendLine(Parse("fontname",  attributes.FontName));
+		a.AppendLine(Parse("fontcolor", attributes.FontColor));
+		a.AppendLine(Parse("bgcolor",   attributes.BackgroundColor));
+
+		string cleaned = string.Join(Environment.NewLine,
+		                             a.ToString().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+		string result = $"""
+		                 graph [
+		                 {cleaned}
+		                 ]
+		                 """;
+		return IndentLines(result, 1);
+	}
+	
+	internal string Parse(NodeAttributes attributes)
+	{
+		if (attributes.IsEmpty)
+		{
+			return "";
+		}
+
+		StringBuilder a = new();
+		a.AppendLine(Parse("label",     attributes.Label));
+		a.AppendLine(Parse("fontname",  attributes.FontName));
+		a.AppendLine(Parse("fontcolor", attributes.FontColor));
+		a.AppendLine(Parse("fillcolor",   attributes.FillColor));
+		a.AppendLine(Parse("shape", attributes.Shape));
+
+		string cleaned = string.Join(Environment.NewLine,
+		                             a.ToString().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+		string result = $"""
+		                 node [
+		                 {cleaned}
+		                 ]
+		                 """;
+		return IndentLines(result, 1);
+	}
+	
+	internal string Parse(GraphEdges edges)
 	{
 		StringBuilder result = new();
 		foreach (Edge edge in edges.Edges)
 		{
-			result.AppendLine(Parse(edge));
+			result.AppendLine($"{Indent(1)}{Parse(edge)}");
 		}
 
 		return result.ToString();
@@ -43,9 +87,8 @@ internal partial class GraphParser
 
 	internal string Parse(Edge edge)
 	{
-		_indentLevel = 1;
 		return $$"""
-		         { {{Parse(edge.FromNodeIds)}}} {{_edgeSymbol}} { {{Parse(edge.ToNodeIds)}}}
+		         { {{ParseIds(edge.FromNodeIds)}}} {{_edgeSymbol}} { {{ParseIds(edge.ToNodeIds)}}}
 		         """;
 	}
 
@@ -54,15 +97,45 @@ internal partial class GraphParser
 		return null;
 	}
 
-	internal string Parse(IEnumerable<string> ids)
+	internal string ParseIds(IEnumerable<string> ids)
 	{
 		StringBuilder result = new();
-		
+
 		foreach (var id in ids)
 		{
 			result.Append($"{id} ");
 		}
-		
+
 		return result.ToString();
+	}
+
+	internal static string? ParseAttributeValue(string? label)
+	{
+		return label == null ? null : label;
+	}
+
+	internal static string Parse(string attribute, string? value)
+	{
+		return ParseAttributeValue(value) == null ? "" : $"{Indent(1)}\"{attribute}\" = \"{value}\"";
+	}
+	
+	internal static string Parse(string attribute, Shape? shape)
+	{
+		if (shape == null)
+		{
+			return "";	
+		}
+		string value = Parse((Shape)shape);
+		return ParseAttributeValue(value) == null ? "" : $"{Indent(1)}\"{attribute}\" = \"{value}\"";
+	}
+
+	internal static string Parse(Shape shape)
+	{
+		return ParseEnum(shape);
+	}
+
+	internal static string ParseEnum<T>(T input)
+	{
+		return input.ToString().ToLower();
 	}
 }
