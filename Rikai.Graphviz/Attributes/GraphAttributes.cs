@@ -9,7 +9,7 @@ public class GraphAttributes
 
 	public Splines? Splines { get; set; }
 	public RankDir? RankDir { get; set; }
-
+	public Overlap? Overlap { get; set; }
 	public LayoutEngine? LayoutEngine { get; set; }
 
 	public bool IsEmpty => this is
@@ -20,6 +20,7 @@ public class GraphAttributes
 		BackgroundColor: null,
 		Splines        : null,
 		RankDir        : null,
+		Overlap        : null,
 		LayoutEngine   : null,
 	};
 }

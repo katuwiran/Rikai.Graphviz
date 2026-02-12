@@ -16,8 +16,11 @@ public class DotGenerator
 	{
 		string dot =
 			$$"""
-			  {{_parser.Parse(_graph.Type)}} {
-			  {{_parser.Parse(_graph.Edges)}}
+			  {{_parser.ParseGraphType(_graph.Type)}} {
+			  {{_parser.ParseGraphAttributes(_graph.Attributes)}}
+			  {{_parser.ParseGraphNodeAttributes(_graph.Nodes.Attributes)}}
+			  {{_parser.ParseGraphEdgeAttributes(_graph.Edges.Attributes)}}
+			  {{_parser.ParseGraphEdges(_graph.Edges)}}
 			  }
 			  """;
 		Console.WriteLine(dot);
