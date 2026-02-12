@@ -1,6 +1,6 @@
 namespace Rikai.Graphviz;
 
-public class NodeAttributes
+public record NodeAttributes
 {
 	public Shape? Shape        = null;
 	public NodeStyle? Style        = null;

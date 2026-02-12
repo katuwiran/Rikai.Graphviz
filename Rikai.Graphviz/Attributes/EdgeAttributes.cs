@@ -1,6 +1,6 @@
 namespace Rikai.Graphviz;
 
-public class EdgeAttributes
+public record EdgeAttributes
 {
 	public ArrowType? ArrowHead     { get; set; } = null;
 	public ArrowType? ArrowTail     { get; set; } = null;

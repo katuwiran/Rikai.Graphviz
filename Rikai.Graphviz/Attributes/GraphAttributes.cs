@@ -1,6 +1,6 @@
 namespace Rikai.Graphviz;
 
-public class GraphAttributes
+public record GraphAttributes
 {
 	public string? Label           { get; set; }
 	public string? FontColor       { get; set; }
