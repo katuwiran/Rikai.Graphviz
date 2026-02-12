@@ -2,7 +2,7 @@ namespace Rikai.Graphviz;
 
 public class Graph
 {
-	public GraphType Type { get; set; } = GraphType.Directed;
+	public required GraphType Type { get; init; }
 
 	public GraphAttributes Attributes { get; set; } = new();
 
