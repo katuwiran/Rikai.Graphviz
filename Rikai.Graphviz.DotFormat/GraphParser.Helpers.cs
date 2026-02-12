@@ -16,4 +16,21 @@ internal partial class GraphParser
 		// 3. Join them back together with '\n'
 		return string.Join('\n', input.Split('\n').Select(line => Indent(level) + line));
 	}
+
+	internal static string FormatAttribute(string name, string value)
+	{
+		return $"{Indent(1)}\"{name}\" = \"{value}\"";
+	}
+
+	internal string RemoveTrailingLine(StringBuilder sb)
+	{
+		return string.Join(Environment.NewLine,
+		                   sb.ToString().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+	}
+
+	internal List<Node> NodesWithAttributes(IEnumerable<Node> nodes)
+	{
+		nodes.Where(n => n.Attributes != null);
+		return nodes.ToList();
+	}
 }
