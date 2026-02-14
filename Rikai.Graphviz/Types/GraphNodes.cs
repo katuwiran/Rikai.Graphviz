@@ -21,15 +21,15 @@ public class GraphNodes
 		}
 	}
 
-	public void Add(string label)
+	public void Add(string id)
 	{
-		var node = new Node(label);
+		var node = new Node(id);
 		AddNodeToCollectionIfNotExists(node);
 	}
 
-	public void Add(params string[] labels)
+	public void Add(IEnumerable<string> ids)
 	{
-		foreach (var label in labels)
+		foreach (var label in ids)
 		{
 			var node = new Node(label);
 			AddNodeToCollectionIfNotExists(node);
@@ -51,7 +51,7 @@ public class GraphNodes
 
 	internal void AddNodeToCollectionIfNotExists(Node node)
 	{
-		if (Nodes.Contains(node))
+		if (!Nodes.Contains(node))
 		{
 			Nodes.Add(node);
 			NodeIds.Add(node.Id);
