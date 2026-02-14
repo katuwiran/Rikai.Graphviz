@@ -10,7 +10,7 @@ public partial class Program
 
 			EdgeAttributes done = new()
 			{
-				FillColor = "green"
+				Color = "green"
 			};
 
 			graph.Edges.Add([
