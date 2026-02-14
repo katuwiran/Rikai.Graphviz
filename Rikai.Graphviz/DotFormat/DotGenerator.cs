@@ -25,15 +25,15 @@ public class DotGenerator
 			  {{_parser.ParseGraphAttributes(_graph.Attributes)}}
 			  {{_parser.ParseGraphNodeAttributes(_graph.Nodes.Attributes)}}
 			  {{_parser.ParseGraphEdgeAttributes(_graph.Edges.Attributes)}}
+			  {{_parser.ParseGraphNodes(_graph.Nodes)}}
 			  {{_parser.ParseGraphEdges(_graph.Edges)}}
 			  }
 			  """;
 		return GraphParser.RemoveEmptyLines(result);
 	}
-	
+
 	public void Print()
 	{
 		Console.WriteLine(this.ToString());
 	}
-
 }

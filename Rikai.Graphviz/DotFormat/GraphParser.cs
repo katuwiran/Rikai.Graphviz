@@ -92,8 +92,24 @@ internal partial class GraphParser
 		                  """;
 		return IndentLines(RemoveEmptyLines(result), 1);
 	}
-		                 """;
-		return IndentLines(result, 1);
+
+	internal string ParseGraphNodes(GraphNodes nodes)
+	{
+		var nodeWithAttributes = nodes.Nodes.Where(n => !n.Attributes.IsEmpty);
+		
+		StringBuilder result = new();
+		foreach (var node in nodeWithAttributes.ToList())
+		{
+			result.AppendLine($"{Indent(1)}{ParseNode(node)}");
+		}
+		return result.ToString();
+	}
+
+	internal string ParseNode(Node node)
+	{
+		return $"""
+		        "{node.Id}" {ParseNodeAttributes(node.Attributes)}
+		        """;
 	}
 
 	internal string ParseGraphEdges(GraphEdges edges)
