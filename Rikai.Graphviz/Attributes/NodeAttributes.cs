@@ -6,7 +6,6 @@ public record NodeAttributes
 	public NodeStyle? Style = null;
 
 	public string? FontName     = null;
-	public string? OutlineColor = null;
 	public string? FontColor    = null;
 	public string? FillColor    = null;
 	public string? Color        = null;
@@ -20,7 +19,6 @@ public record NodeAttributes
 		Shape       : null,
 		Style       : null,
 		FontName    : null,
-		OutlineColor: null,
 		FontColor   : null,
 		FillColor   : null,
 		Color       : null,
