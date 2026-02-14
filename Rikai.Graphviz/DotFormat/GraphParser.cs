@@ -37,22 +37,20 @@ internal partial class GraphParser
 			return "";
 		}
 
-		StringBuilder a = new();
-		a.AppendLine(ParseAttribute("label",     attributes.Label));
-		a.AppendLine(ParseAttribute("fontname",  attributes.FontName));
-		a.AppendLine(ParseAttribute("fontcolor", attributes.FontColor));
-		a.AppendLine(ParseAttribute("bgcolor",   attributes.BackgroundColor));
-		a.AppendLine(ParseEnumAttribute("splines", attributes.Splines));
-		a.AppendLine(ParseEnumAttribute("rankdir", attributes.RankDir));
-		a.AppendLine(ParseEnumAttribute("overlap", attributes.Overlap));
-		a.AppendLine(ParseEnumAttribute("layout",  attributes.LayoutEngine));
+		string result = $$"""
+		                  graph [
+		                  {{ParseAttribute("label", attributes.Label)}}
+		                  {{ParseAttribute("fontname", attributes.FontName)}}
+		                  {{ParseAttribute("fontcolor", attributes.FontColor)}}
+		                  {{ParseAttribute("bgcolor", attributes.BackgroundColor)}}
+		                  {{ParseEnumAttribute("splines", attributes.Splines)}}
+		                  {{ParseEnumAttribute("rankdir", attributes.RankDir)}}
+		                  {{ParseEnumAttribute("overlap", attributes.Overlap)}}
+		                  {{ParseEnumAttribute("layout", attributes.LayoutEngine)}}
+		                  ]
+		                  """;
 
-		string result = $"""
-		                 graph [
-		                 {RemoveTrailingLine(a)}
-		                 ]
-		                 """;
-		return IndentLines(result, 1);
+		return IndentLines(RemoveEmptyLines(result), 1);
 	}
 
 	internal string ParseGraphNodeAttributes(NodeAttributes attributes)
@@ -62,19 +60,17 @@ internal partial class GraphParser
 			return "";
 		}
 
-		StringBuilder a = new();
-		a.AppendLine(ParseAttribute("label",     attributes.Label));
-		a.AppendLine(ParseAttribute("fontname",  attributes.FontName));
-		a.AppendLine(ParseAttribute("fontcolor", attributes.FontColor));
-		a.AppendLine(ParseAttribute("fillcolor", attributes.FillColor));
-		a.AppendLine(ParseEnumAttribute("shape", attributes.Shape));
-
-		string result = $"""
-		                 node [
-		                 {RemoveTrailingLine(a)}
-		                 ]
-		                 """;
-		return IndentLines(result, 1);
+		string result = $$"""
+		                  node [
+		                  {{ParseAttribute("label", attributes.Label)}}
+		                  {{ParseAttribute("fontname", attributes.FontName)}}
+		                  {{ParseAttribute("fontcolor", attributes.FontColor)}}
+		                  {{ParseAttribute("fillcolor", attributes.FillColor)}}
+		                  {{ParseAttribute("color", attributes.Color)}}
+		                  {{ParseEnumAttribute("shape", attributes.Shape)}}
+		                  ]
+		                  """;
+		return IndentLines(RemoveEmptyLines(result), 1);
 	}
 
 	internal string ParseGraphEdgeAttributes(EdgeAttributes attributes)
@@ -84,18 +80,18 @@ internal partial class GraphParser
 			return "";
 		}
 
-		StringBuilder a = new();
-		a.AppendLine(ParseAttribute("label",     attributes.Label));
-		a.AppendLine(ParseAttribute("fontname",  attributes.FontName));
-		a.AppendLine(ParseAttribute("fontcolor", attributes.FontColor));
-		a.AppendLine(ParseAttribute("fillcolor", attributes.FillColor));
-		a.AppendLine(ParseEnumAttribute("arrowhead", attributes.ArrowHead));
-		a.AppendLine(ParseEnumAttribute("arrowtail", attributes.ArrowTail));
-
-		string result = $"""
-		                 edge [ 
-		                 {RemoveTrailingLine(a)}
-		                 ]
+		string result = $$"""
+		                  edge [ 
+		                  {{ParseAttribute("label", attributes.Label)}}
+		                  {{ParseAttribute("fontname", attributes.FontName)}}
+		                  {{ParseAttribute("fontcolor", attributes.FontColor)}}
+		                  {{ParseAttribute("color", attributes.Color)}}
+		                  {{ParseEnumAttribute("arrowhead", attributes.ArrowHead)}}
+		                  {{ParseEnumAttribute("arrowtail", attributes.ArrowTail)}}
+		                  ]
+		                  """;
+		return IndentLines(RemoveEmptyLines(result), 1);
+	}
 		                 """;
 		return IndentLines(result, 1);
 	}
@@ -108,7 +104,7 @@ internal partial class GraphParser
 			result.AppendLine($"{Indent(1)}{ParseEdge(edge)}");
 		}
 
-		return RemoveTrailingLine(result);
+		return RemoveEmptyLines(result);
 	}
 
 	internal string ParseEdge(Edge edge)

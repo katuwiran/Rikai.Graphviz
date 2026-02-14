@@ -19,7 +19,7 @@ public class DotGenerator
 
 	public override string ToString()
 	{
-		return
+		string result = 
 			$$"""
 			  {{_parser.ParseGraphType(_graph.Type)}} {
 			  {{_parser.ParseGraphAttributes(_graph.Attributes)}}
@@ -28,6 +28,7 @@ public class DotGenerator
 			  {{_parser.ParseGraphEdges(_graph.Edges)}}
 			  }
 			  """;
+		return GraphParser.RemoveEmptyLines(result);
 	}
 	
 	public void Print()
