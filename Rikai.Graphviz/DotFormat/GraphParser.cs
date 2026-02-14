@@ -110,7 +110,54 @@ internal partial class GraphParser
 	internal string ParseEdge(Edge edge)
 	{
 		return $$"""
-		         { {{ParseIds(edge.FromNodeIds)}}} {{_edgeSymbol}} { {{ParseIds(edge.ToNodeIds)}}}
+		         { {{ParseIds(edge.FromNodeIds)}}} {{_edgeSymbol}} { {{ParseIds(edge.ToNodeIds)}}} {{ParseEdgeAttributes(edge.Attributes)}}
 		         """;
+	}
+
+	internal string ParseEdgeAttributes(EdgeAttributes attributes)
+	{
+		if (attributes.IsEmpty)
+		{
+			return "";
+		}
+
+		string a = $"""
+		            {ParseAttribute("label", attributes.Label)}
+		            {ParseAttribute("fontname", attributes.FontName)}
+		            {ParseAttribute("fontcolor", attributes.FontColor)}
+		            {ParseAttribute("color", attributes.Color)}
+		            {ParseEnumAttribute("arrowhead", attributes.ArrowHead)}
+		            {ParseEnumAttribute("arrowtail", attributes.ArrowTail)}
+		            ]
+		            """;
+
+		string b = $"""
+		            [ 
+		            {IndentLines(RemoveEmptyLines(a), 1)}
+		            """;
+		return b;
+	}
+	
+	internal string ParseNodeAttributes(NodeAttributes attributes)
+	{
+		if (attributes.IsEmpty)
+		{
+			return "";
+		}
+
+		string a = $"""
+		            {ParseAttribute("label", attributes.Label)}
+		            {ParseAttribute("fontname", attributes.FontName)}
+		            {ParseAttribute("fontcolor", attributes.FontColor)}
+		            {ParseAttribute("fillcolor", attributes.FillColor)}
+		            {ParseAttribute("color", attributes.Color)}
+		            ]
+		            """;
+
+		string b = $"""
+		            [ 
+		            {IndentLines(RemoveEmptyLines(a), 1)}
+		            """;
+		return b;
 	}
 }

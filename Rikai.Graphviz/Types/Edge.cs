@@ -6,6 +6,8 @@ public class Edge
 	public List<string> ToNodeIds   { get; set; } = new();
 	public List<Node>   FromNodes   { get; set; } = new();
 	public List<Node>   ToNodes     { get; set; } = new();
+	
+	public EdgeAttributes Attributes { get; set; } = new();
 
 	/// <summary>
 	/// Determines the starting point of this Edge. Uses predefined nodes for Ids.

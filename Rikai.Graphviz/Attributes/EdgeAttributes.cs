@@ -9,7 +9,7 @@ public record EdgeAttributes
 	public string?    Label         { get; set; } = null;
 	public string?    TailLabel     { get; set; } = null;
 	public string?    HeadLabel     { get; set; } = null;
-	public string?    FillColor     { get; set; } = null;
+	public string?    Color         { get; set; } = null;
 	public string?    FontColor     { get; set; } = null;
 	public string?    OutlineColor  { get; set; } = null;
 	public double?    LabelDistance { get; set; } = null;
@@ -29,7 +29,7 @@ public record EdgeAttributes
 		Label        : null,
 		TailLabel    : null,
 		HeadLabel    : null,
-		FillColor    : null,
+		Color        : null,
 		FontColor    : null,
 		OutlineColor : null,
 		LabelDistance: null,
