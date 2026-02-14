@@ -20,7 +20,7 @@ internal partial class GraphParser
 	{
 		return value == null ? "" : FormatAttribute(name, value);
 	}
-	
+
 	internal static string Indent(int indentLevel)
 	{
 		return new StringBuilder().Insert(0, _indentChar, indentLevel).ToString();
@@ -36,13 +36,21 @@ internal partial class GraphParser
 
 	internal static string FormatAttribute(string name, string value)
 	{
-		return $"{Indent(1)}\"{name}\" = \"{value}\"";
+		return $"{Indent(1)}\"{name}\" = \"{value}\"\n";
 	}
 
-	internal string RemoveTrailingLine(StringBuilder sb)
+	internal static string RemoveEmptyLines(StringBuilder sb)
 	{
 		return string.Join(Environment.NewLine,
 		                   sb.ToString().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+	}
+
+	internal static string RemoveEmptyLines(string input)
+	{
+		if (string.IsNullOrEmpty(input)) return string.Empty;
+
+		return string.Join(Environment.NewLine,
+		                   input.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
 	}
 
 	internal List<Node> NodesWithAttributes(IEnumerable<Node> nodes)
