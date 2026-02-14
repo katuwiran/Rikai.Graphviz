@@ -62,7 +62,7 @@ public class GraphNodes
 	{
 		foreach (var node in nodes)
 		{
-			if (Nodes.Contains(node))
+			if (!Nodes.Contains(node))
 			{
 				Nodes.Add(node);
 				NodeIds.Add(node.Id);

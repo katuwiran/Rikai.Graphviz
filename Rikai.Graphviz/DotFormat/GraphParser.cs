@@ -96,7 +96,6 @@ internal partial class GraphParser
 	internal string ParseGraphNodes(GraphNodes nodes)
 	{
 		var nodeWithAttributes = nodes.Nodes.Where(n => !n.Attributes.IsEmpty);
-		
 		StringBuilder result = new();
 		foreach (var node in nodeWithAttributes.ToList())
 		{
