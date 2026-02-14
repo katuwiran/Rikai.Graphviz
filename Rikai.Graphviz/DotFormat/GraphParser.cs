@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Rikai.Graphviz;
+namespace Rikai.Graphviz.DotFormat;
 
 // parts of this parser, in order of appearance
 // graph type
@@ -43,10 +43,10 @@ internal partial class GraphParser
 		                  {{ParseAttribute("fontname", attributes.FontName)}}
 		                  {{ParseAttribute("fontcolor", attributes.FontColor)}}
 		                  {{ParseAttribute("bgcolor", attributes.BackgroundColor)}}
-		                  {{ParseEnumAttribute("splines", attributes.Splines)}}
-		                  {{ParseEnumAttribute("rankdir", attributes.RankDir)}}
-		                  {{ParseEnumAttribute("overlap", attributes.Overlap)}}
-		                  {{ParseEnumAttribute("layout", attributes.LayoutEngine)}}
+		                  {{ParseAttributeEnum("splines", attributes.Splines)}}
+		                  {{ParseAttributeEnum("rankdir", attributes.RankDir)}}
+		                  {{ParseAttributeEnum("overlap", attributes.Overlap)}}
+		                  {{ParseAttributeEnum("layout", attributes.LayoutEngine)}}
 		                  ]
 		                  """;
 
@@ -67,7 +67,7 @@ internal partial class GraphParser
 		                  {{ParseAttribute("fontcolor", attributes.FontColor)}}
 		                  {{ParseAttribute("fillcolor", attributes.FillColor)}}
 		                  {{ParseAttribute("color", attributes.Color)}}
-		                  {{ParseEnumAttribute("shape", attributes.Shape)}}
+		                  {{ParseAttributeEnum("shape", attributes.Shape)}}
 		                  ]
 		                  """;
 		return IndentLines(RemoveEmptyLines(result), 1);
@@ -86,8 +86,8 @@ internal partial class GraphParser
 		                  {{ParseAttribute("fontname", attributes.FontName)}}
 		                  {{ParseAttribute("fontcolor", attributes.FontColor)}}
 		                  {{ParseAttribute("color", attributes.Color)}}
-		                  {{ParseEnumAttribute("arrowhead", attributes.ArrowHead)}}
-		                  {{ParseEnumAttribute("arrowtail", attributes.ArrowTail)}}
+		                  {{ParseAttributeEnum("arrowhead", attributes.ArrowHead)}}
+		                  {{ParseAttributeEnum("arrowtail", attributes.ArrowTail)}}
 		                  ]
 		                  """;
 		return IndentLines(RemoveEmptyLines(result), 1);
@@ -95,12 +95,13 @@ internal partial class GraphParser
 
 	internal string ParseGraphNodes(GraphNodes nodes)
 	{
-		var nodeWithAttributes = nodes.Nodes.Where(n => !n.Attributes.IsEmpty);
-		StringBuilder result = new();
+		var           nodeWithAttributes = nodes.Nodes.Where(n => !n.Attributes.IsEmpty);
+		StringBuilder result             = new();
 		foreach (var node in nodeWithAttributes.ToList())
 		{
 			result.AppendLine($"{Indent(1)}{ParseNode(node)}");
 		}
+
 		return result.ToString();
 	}
 
@@ -141,8 +142,8 @@ internal partial class GraphParser
 		            {ParseAttribute("fontname", attributes.FontName)}
 		            {ParseAttribute("fontcolor", attributes.FontColor)}
 		            {ParseAttribute("color", attributes.Color)}
-		            {ParseEnumAttribute("arrowhead", attributes.ArrowHead)}
-		            {ParseEnumAttribute("arrowtail", attributes.ArrowTail)}
+		            {ParseAttributeEnum("arrowhead", attributes.ArrowHead)}
+		            {ParseAttributeEnum("arrowtail", attributes.ArrowTail)}
 		            ]
 		            """;
 
@@ -152,7 +153,7 @@ internal partial class GraphParser
 		            """;
 		return b;
 	}
-	
+
 	internal string ParseNodeAttributes(NodeAttributes attributes)
 	{
 		if (attributes.IsEmpty)
@@ -162,10 +163,13 @@ internal partial class GraphParser
 
 		string a = $"""
 		            {ParseAttribute("label", attributes.Label)}
+		            {ParseAttributeEnum("style", attributes.Style)}
 		            {ParseAttribute("fontname", attributes.FontName)}
 		            {ParseAttribute("fontcolor", attributes.FontColor)}
 		            {ParseAttribute("fillcolor", attributes.FillColor)}
 		            {ParseAttribute("color", attributes.Color)}
+		            {ParseAttribute("width", attributes.Width)}
+		            {ParseAttribute("fontsize", attributes.FontSize)}
 		            ]
 		            """;
 

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Rikai.Graphviz;
+namespace Rikai.Graphviz.DotFormat;
 
 public class DotGenerator
 {

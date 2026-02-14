@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Rikai.Graphviz;
+namespace Rikai.Graphviz.DotFormat;
 
 internal partial class GraphParser
 {
@@ -14,6 +14,11 @@ internal partial class GraphParser
 		}
 
 		return result.ToString();
+	}
+	
+	internal static string ParseAttribute(string name, double? value)
+	{
+		return value == null ? "" : FormatAttribute(name, $"{value}");
 	}
 
 	internal static string ParseAttribute(string name, string? value)
@@ -57,5 +62,14 @@ internal partial class GraphParser
 	{
 		nodes.Where(n => n.Attributes != null);
 		return nodes.ToList();
+	}
+	
+	internal static string ParseAttributeEnum<T>(string name, T value)
+	{
+		if (value == null) return string.Empty;
+		
+		string valueStr = value.ToString() ?? "";
+			
+		return valueStr == "" ? "" : FormatAttribute(name, valueStr.ToLower());
 	}
 }

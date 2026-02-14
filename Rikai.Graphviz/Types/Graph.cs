@@ -22,7 +22,7 @@ public class Graph
 
 	public override string ToString()
 	{
-		DotGenerator generator = new(this);
+		DotFormat.DotGenerator generator = new(this);
 		return generator.ToString();
 	}
 
