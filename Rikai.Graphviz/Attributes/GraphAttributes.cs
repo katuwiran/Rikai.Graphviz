@@ -7,6 +7,7 @@ public record GraphAttributes
 	public string? FontName        { get; set; }
 	public string? BackgroundColor { get; set; }
 
+	public LabelLocation? LabelLocation { get; set; }
 	public Splines? Splines { get; set; }
 	public RankDir? RankDir { get; set; }
 	public Overlap? Overlap { get; set; }

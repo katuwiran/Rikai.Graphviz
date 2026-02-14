@@ -40,6 +40,7 @@ internal partial class GraphParser
 		string result = $$"""
 		                  graph [
 		                  {{ParseAttribute("label", attributes.Label)}}
+		                  {{ParseAttributeEnum("labellocation", attributes.LabelLocation)}}
 		                  {{ParseAttribute("fontname", attributes.FontName)}}
 		                  {{ParseAttribute("fontcolor", attributes.FontColor)}}
 		                  {{ParseAttribute("bgcolor", attributes.BackgroundColor)}}
