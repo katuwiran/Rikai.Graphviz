@@ -17,7 +17,17 @@ public class Graph
 
 	public Node GetNodeById(string id)
 	{
-		Nodes.Nodes.Select(n => n.Id == id).FirstOrDefault(n => n != null);
-		return Nodes.Nodes.FirstOrDefault(n => n.Id == id);
+		return null;
+	}
+
+	public override string ToString()
+	{
+		DotGenerator generator = new(this);
+		return generator.ToString();
+	}
+
+	public void PrintToConsole()
+	{
+		Console.WriteLine(ToString());
 	}
 }
