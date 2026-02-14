@@ -1,6 +1,6 @@
 namespace Rikai.Graphviz.Samples;
 
-public static partial class ShowCase
+public partial class Program
 {
 	public static Graph SyntaxShowcase
 	{
