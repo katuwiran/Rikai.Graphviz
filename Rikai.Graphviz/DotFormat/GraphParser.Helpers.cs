@@ -70,6 +70,6 @@ internal partial class GraphParser
 		
 		string valueStr = value.ToString() ?? "";
 			
-		return valueStr == "" ? "" : FormatAttribute(name, valueStr.ToLower());
+		return valueStr == "" ? "" : FormatAttribute(name, valueStr);
 	}
 }

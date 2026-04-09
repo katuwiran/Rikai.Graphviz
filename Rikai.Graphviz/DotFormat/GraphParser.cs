@@ -47,7 +47,7 @@ internal partial class GraphParser
 		                  {{ParseAttributeEnum("splines", attributes.Splines)}}
 		                  {{ParseAttributeEnum("rankdir", attributes.RankDir)}}
 		                  {{ParseAttributeEnum("overlap", attributes.Overlap)}}
-		                  {{ParseAttributeEnum("layout", attributes.LayoutEngine)}}
+		                  {{(ParseAttributeEnum("layout", attributes.LayoutEngine)).ToLower()}}
 		                  ]
 		                  """;
 
@@ -68,7 +68,7 @@ internal partial class GraphParser
 		                  {{ParseAttribute("fontcolor", attributes.FontColor)}}
 		                  {{ParseAttribute("fillcolor", attributes.FillColor)}}
 		                  {{ParseAttribute("color", attributes.Color)}}
-		                  {{ParseAttributeEnum("shape", attributes.Shape)}}
+		                  {{ParseAttributeEnum("shape", attributes.Shape).ToLower()}}
 		                  ]
 		                  """;
 		return IndentLines(RemoveEmptyLines(result), 1);
@@ -97,6 +97,8 @@ internal partial class GraphParser
 	internal string ParseGraphNodes(GraphNodes nodes)
 	{
 		var           nodeWithAttributes = nodes.Nodes.Where(n => !n.Attributes.IsEmpty);
+		var nodeWithAttributes = nodes.Nodes;
+
 		StringBuilder result             = new();
 		foreach (var node in nodeWithAttributes.ToList())
 		{
@@ -165,6 +167,7 @@ internal partial class GraphParser
 		string a = $"""
 		            {ParseAttribute("label", attributes.Label)}
 		            {ParseAttributeEnum("style", attributes.Style)}
+		            {ParseAttributeEnum("shape", attributes.Shape).ToLower()}
 		            {ParseAttribute("fontname", attributes.FontName)}
 		            {ParseAttribute("fontcolor", attributes.FontColor)}
 		            {ParseAttribute("fillcolor", attributes.FillColor)}
