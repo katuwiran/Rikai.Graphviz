@@ -18,7 +18,7 @@ internal partial class GraphParser
 
 	internal string ParseGraphType(GraphType type)
 	{
-		if (type == GraphType.Directed)
+		if (type == GraphType.Undirected)
 		{
 			_edgeSymbol = "--";
 			return "graph";

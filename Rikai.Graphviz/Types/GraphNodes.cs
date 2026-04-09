@@ -21,13 +21,13 @@ public class GraphNodes
 		}
 	}
 
-	public void Add(string id)
+	public void AddId(string id)
 	{
 		var node = new Node(id);
 		AddNodeToCollectionIfNotExists(node);
 	}
 
-	public void Add(IEnumerable<string> ids)
+	public void AddIds(IEnumerable<string> ids)
 	{
 		foreach (var label in ids)
 		{
