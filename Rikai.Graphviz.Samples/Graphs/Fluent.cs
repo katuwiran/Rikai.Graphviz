@@ -15,7 +15,7 @@ public partial class Graphs
 			.WithAttributes(a => a
 				.FontName("Libertinus Sans")
 				.FontColor("cccccc")
-				.RankDir(RankDir.BT)
+				.RankDir(RankDir.LR)
 				.LayoutEngine(LayoutEngine.Dot))
 
 			// define the Graph Node attributes
@@ -35,8 +35,8 @@ public partial class Graphs
 			.Build();
 
 		// You can define nodes like this
-		Node n1   = new(id: "UNIQUE");
-		Node n2   = new(id: "TEEHEE");
+		Node n1   = new(id: "Unique");
+		Node n2   = new(id: "tee hee ~");
 		Node solo = new(id: "I'm alone!");
 
 		// You can instantiate another builder using a different graph and extend it
@@ -65,6 +65,22 @@ public partial class Graphs
 				new(from: ["B", "C"], to: ["D", "E", "F"]),
 				new("C", "F")
 			])
+			
+			// Adding an edge using the fluent builder
+			.AddEdge(new EdgeBuilder()
+				.From("From this")
+				.To("To that")
+				.Build())
+			
+			// Adding a fluent edge with attributes
+			.AddEdge(new EdgeBuilder()
+				.From("Like that")
+				.To("But to there")
+				.WithAttributes(a => a
+					.ArrowHead(ArrowType.Vee)
+					.Color("pink")
+					.Label("test"))
+				.Build())
 			.Build();
 		
 		return continuation;

@@ -44,17 +44,12 @@ public partial class Graphs
 		Edge e1 = new("n1", "n2");
 		graph.Edges.Add(e1);
 
-		// this syntax is also allowed, but I don't recommend it.
-		Edge e2 = new();
-		e2.From("A").To("B");
-
 		// My preferred method is to define all edges like this in one go
 		// you can add predefined edges, or create on the fly.
 		// 1:N, N:1, and N:N assignment is also supported
 		// this is closest to vanilla graphviz's syntax for fast iteration
 		// todo: node to labels are not yet allowed ;)
 		graph.Edges.AddRange([
-			e2,
 			new("A", "B"),
 			// new(node, "C"),
 			new(n1, n2),
