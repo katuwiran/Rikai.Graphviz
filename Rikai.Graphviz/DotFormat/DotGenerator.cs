@@ -2,34 +2,46 @@
 
 namespace Rikai.Graphviz.DotFormat;
 
-public class DotGenerator
+public partial class DotGenerator
 {
-	Graph               _graph  { get; init; }
-	private GraphParser _parser { get; init; } = new();
-
-
-	string GraphAttributes { get; set; }
-	string GraphNodes      { get; set; }
-	string GraphEdges      { get; set; }
+	internal int           Indent     { get; set; } = 1;
+	internal StringBuilder Sb         { get; set; } = new();
+	internal Graph         Graph      { get; init; }
+	internal string        Type       { get; init; }
+	internal string        EdgeSymbol { get; init; }
 
 	public DotGenerator(Graph graph)
 	{
-		_graph = graph;
+		Graph      = graph;
+		Type       = graph.Type == GraphType.Directed ? "digraph" : "graph";
+		EdgeSymbol = graph.Type == GraphType.Directed ? "->" : "--";
+	}
+
+	public string Generate()
+	{
+		var formatter = new GraphFormatter(this);
+
+		Sb.AppendLine(Type + "{");
+		formatter.FormatGraphAttributes();
+		formatter.FormatGraphNodeAttributes();
+		formatter.FormatGraphEdgeAttributes();
+		formatter.FormatGraphNodes();
+		formatter.FormatGraphEdges();
+		Sb.AppendLine("}");
+
+		return Sb.ToString();
 	}
 
 	public override string ToString()
 	{
-		string result = 
-			$$"""
-			  {{_parser.ParseGraphType(_graph.Type)}} {
-			  {{_parser.ParseGraphAttributes(_graph.Attributes)}}
-			  {{_parser.ParseGraphNodeAttributes(_graph.Nodes.Attributes)}}
-			  {{_parser.ParseGraphEdgeAttributes(_graph.Edges.Attributes)}}
-			  {{_parser.ParseGraphNodes(_graph.Nodes)}}
-			  {{_parser.ParseGraphEdges(_graph.Edges)}}
-			  }
-			  """;
-		return GraphParser.RemoveEmptyLines(result);
+		string result = Generate();
+		// {{Formatter.ParseGraphAttributes(_graph.Attributes)}}
+		// {{Formatter.ParseGraphNodeAttributes(_graph.Nodes.Attributes)}}
+		// {{Formatter.ParseGraphEdgeAttributes(_graph.Edges.Attributes)}}
+		// {{Formatter.ParseGraphNodes(Graph.Nodes)}}
+		// {{Formatter.ParseGraphEdges(Graph.Edges)}}
+		// return OldGraphFormatter.RemoveEmptyLines(result);
+		return result;
 	}
 
 	public void Print()

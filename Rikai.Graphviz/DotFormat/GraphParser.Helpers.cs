@@ -2,32 +2,23 @@ using System.Text;
 
 namespace Rikai.Graphviz.DotFormat;
 
-internal partial class GraphParser
+internal partial class Helpers
 {
-	internal string ParseIds(IEnumerable<string> ids)
+
+
+	internal static string FormatAttribute(string name, double? value)
 	{
-		StringBuilder result = new();
-
-		foreach (var id in ids)
-		{
-			result.Append($"\"{id}\" ");
-		}
-
-		return result.ToString();
+		return value == null ? "" : ParseAttribute(name, $"{value}");
 	}
 
-	internal static string ParseAttribute(string name, double? value)
+	internal static string FormatAttribute(string name, string? value)
 	{
-		return value == null ? "" : FormatAttribute(name, $"{value}");
-	}
-
-	internal static string ParseAttribute(string name, string? value)
-	{
-		return value == null ? "" : FormatAttribute(name, value);
+		return value == null ? "" : ParseAttribute(name, value);
 	}
 
 	internal static string Indent(int indentLevel)
 	{
+		var _indentChar = "    ";
 		return new StringBuilder().Insert(0, _indentChar, indentLevel).ToString();
 	}
 
@@ -39,9 +30,9 @@ internal partial class GraphParser
 		return string.Join('\n', input.Split('\n').Select(line => Indent(level) + line));
 	}
 
-	internal static string FormatAttribute(string name, string value)
+	internal static string ParseAttribute(string name, string value)
 	{
-		return $"{Indent(1)}\"{name}\" = \"{value}\"\n";
+		return $"\"{name}\" = \"{value}\"\n";
 	}
 
 	internal static string RemoveEmptyLines(StringBuilder sb)
@@ -64,12 +55,12 @@ internal partial class GraphParser
 		return nodes.ToList();
 	}
 
-	internal static string ParseAttributeEnum<T>(string name, T value)
+	internal static string FormatAttributeEnum<T>(string name, T value)
 	{
 		if (value == null) return string.Empty;
 
 		string valueStr = value.ToString() ?? "";
 
-		return valueStr == "" ? "" : FormatAttribute(name, valueStr);
+		return valueStr == "" ? "" : ParseAttribute(name, valueStr);
 	}
 }
