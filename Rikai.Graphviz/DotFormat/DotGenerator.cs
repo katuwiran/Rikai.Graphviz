@@ -27,6 +27,7 @@ public partial class DotGenerator
 		formatter.FormatGraphEdgeAttributes();
 		formatter.FormatGraphNodes();
 		formatter.FormatGraphEdges();
+		formatter.FormatGraphClusters();
 		Sb.AppendLine("}");
 
 		return Sb.ToString();

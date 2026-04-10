@@ -6,19 +6,16 @@ public class Graph
 
 	public GraphAttributes Attributes { get; set; } = new();
 
-	public GraphNodes Nodes { get; } = new();
-	public GraphEdges Edges { get; }
+	public GraphNodes    Nodes    { get; } = new();
+	public GraphEdges    Edges    { get; }
+	public GraphClusters Clusters { get; } = new();
+
 
 	public Graph()
 	{
 		// as the logic of Edges has a dependency on the contents of a Graph
 		// we inject a reference of the Graph to the instance of Graph Edges
 		Edges = new(this);
-	}
-
-	public Node GetNodeById(string id)
-	{
-		return null;
 	}
 
 	public override string ToString()

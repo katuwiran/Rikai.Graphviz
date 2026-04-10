@@ -1,14 +1,14 @@
 namespace Rikai.Graphviz;
 
-public class GraphEdges
+public class ClusterEdges
 {
 	public   EdgeAttributes Attributes { get; set; }  = new();
-	public   List<Edge>     Collection      { get; init; } = new();
-	internal GraphNodes     Nodes; // constructor DI
+	public   List<Edge>     Collection { get; init; } = new();
+	internal ClusterNodes   Nodes; // constructor DI
 
-	public GraphEdges(Graph graph)
+	public ClusterEdges(Cluster cluster)
 	{
-		Nodes = graph.Nodes;
+		Nodes      = cluster.Nodes;
 	}
 
 	// Add one edge

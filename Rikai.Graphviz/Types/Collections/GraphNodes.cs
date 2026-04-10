@@ -13,7 +13,7 @@ public class GraphNodes
 	/// <summary>
 	/// This contains all the nodes in a graph that is defined with attributes and logic, e.g. not just by its id or labels.
 	/// </summary>
-	internal List<Node> Nodes { get; set; } = new();
+	internal List<Node> Collection { get; set; } = new();
 
 	/// <summary>
 	/// This contains the ids of all nodes in a graph, regardless whether they are defined with attributes or not.  
@@ -80,7 +80,7 @@ public class GraphNodes
 			var id = node.Id;
 			if (!NodeIds.Contains(id))
 			{
-				Nodes.Add(node);
+				Collection.Add(node);
 				NodeIds.Add(node.Id);
 			}
 		}
@@ -94,9 +94,9 @@ public class GraphNodes
 	{
 		foreach (var node in nodes)
 		{
-			if (!Nodes.Contains(node))
+			if (!Collection.Contains(node))
 			{
-				Nodes.Add(node);
+				Collection.Add(node);
 				NodeIds.Add(node.Id);
 			}
 		}
@@ -108,9 +108,9 @@ public class GraphNodes
 	/// <param name="nodes"></param>
 	internal void AddNodeToCollectionIfNotExists(Node node)
 	{
-		if (!Nodes.Contains(node))
+		if (!Collection.Contains(node))
 		{
-			Nodes.Add(node);
+			Collection.Add(node);
 			NodeIds.Add(node.Id);
 		}
 	}

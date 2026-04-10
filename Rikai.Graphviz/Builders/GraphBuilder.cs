@@ -19,7 +19,7 @@ namespace Rikai.Graphviz.Builders
 		/// <summary>
 		/// Instantiates GraphBuilder from a predefined grah. Requires to pass the <c>GraphType</c> in the signature.
 		/// </summary>
-		/// <param name="type"></param>
+		/// <param name="graph"></param>
 		public GraphBuilder(Graph graph)
 		{
 			_graph = graph;
@@ -68,18 +68,29 @@ namespace Rikai.Graphviz.Builders
 		}
 
 		// adding Nodes, refer to Types/Collections/GraphNodes for details
-		public GraphBuilder AddNode(string id)
+		public GraphBuilder AddNode(string id, NodeAttributes? attr = null)
 		{
+			if (attr is not null)
+			{
+				_graph.Nodes.Add(new Node(id, attr));
+			}
+
 			_graph.Nodes.Add(new Node(id));
 			return this;
 		}
 
-		public GraphBuilder AddNode(Node node)
+		public GraphBuilder AddNode(Node node, NodeAttributes? attr = null)
 		{
+			if (attr is not null)
+			{
+				node.Attributes = attr;
+				_graph.Nodes.Add(node);
+			}
+
 			_graph.Nodes.Add(node);
 			return this;
 		}
-		
+
 		public GraphBuilder AddNodes(IEnumerable<string> ids)
 		{
 			_graph.Nodes.AddIdRange(ids);
@@ -153,6 +164,18 @@ namespace Rikai.Graphviz.Builders
 			return this;
 		}
 
+		public GraphBuilder AddCluster(Cluster cluster)
+		{
+			_graph.Clusters.Add(cluster);
+			return this;
+		}
+
+		public GraphBuilder AddClusters(IEnumerable<Cluster> clusters)
+		{
+			_graph.Clusters.AddRange(clusters);
+			return this;
+		}
+
 		/// <summary>
 		/// Returns the Graph.
 		/// </summary>
@@ -162,9 +185,4 @@ namespace Rikai.Graphviz.Builders
 			return _graph;
 		}
 	}
-
-	// --- SUB-BUILDERS FOR ATTRIBUTES ---
-	// These abstract away direct property assignment into chainable methods.
-
-	// (You would create a similar EdgeAttributeBuilder here)
 }
