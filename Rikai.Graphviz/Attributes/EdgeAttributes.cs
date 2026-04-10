@@ -2,23 +2,23 @@ namespace Rikai.Graphviz;
 
 public record EdgeAttributes
 {
-	public ArrowType? ArrowHead     { get; set; } = null;
-	public ArrowType? ArrowTail     { get; set; } = null;
-	public EdgeStyle? Style         { get; set; } = null;
-	public string?    FontName      { get; set; } = null;
-	public string?    Label         { get; set; } = null;
-	public string?    TailLabel     { get; set; } = null;
-	public string?    HeadLabel     { get; set; } = null;
-	public string?    Color         { get; set; } = null;
-	public string?    FontColor     { get; set; } = null;
-	public string?    OutlineColor  { get; set; } = null;
-	public double?    LabelDistance { get; set; } = null;
-	public double?    LabelAngle    { get; set; } = null;
-	public double?    FontSize      { get; set; } = null;
-	public double?    Length        { get; set; } = null;
-	public double?    MinLength     { get; set; } = null;
-	public double?    PenWidth      { get; set; } = null;
-	public bool?      Decorate      { get; set; } = null;
+	public ArrowType? ArrowHead     { get; set; }
+	public ArrowType? ArrowTail     { get; set; }
+	public EdgeStyle? Style         { get; set; }
+	public string?    FontName      { get; set; }
+	public string?    Label         { get; set; }
+	public string?    TailLabel     { get; set; }
+	public string?    HeadLabel     { get; set; }
+	public string?    Color         { get; set; }
+	public string?    FontColor     { get; set; }
+	public string?    OutlineColor  { get; set; }
+	public double?    LabelDistance { get; set; }
+	public double?    LabelAngle    { get; set; }
+	public double?    FontSize      { get; set; }
+	public double?    Length        { get; set; }
+	public double?    MinLength     { get; set; }
+	public double?    PenWidth      { get; set; }
+	public bool?      Decorate      { get; set; }
 
 	public bool IsEmpty => this is
 	{
