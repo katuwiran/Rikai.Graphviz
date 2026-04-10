@@ -20,7 +20,7 @@ public class GraphEdges
 	}
 
 	// Add edges
-	public void Add(IEnumerable<Edge> edges)
+	public void AddRange(IEnumerable<Edge> edges)
 	{
 		Edges.AddRange(edges);
 		foreach (var edge in edges)

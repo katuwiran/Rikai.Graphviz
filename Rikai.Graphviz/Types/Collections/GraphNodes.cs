@@ -1,19 +1,42 @@
 namespace Rikai.Graphviz;
 
+/// <summary>
+/// This class represents the nodes included in graph. Unique ids are expected for all nodes included. Repeated ids are ignored by default.
+/// </summary>
 public class GraphNodes
 {
+	/// <summary>
+	/// This represents the default attributes for all graph nodes.
+	/// </summary>
 	public NodeAttributes Attributes { get; set; } = new();
 
-	internal List<Node>   Nodes   { get; set; } = new();
+	/// <summary>
+	/// This contains all the nodes in a graph that is defined with attributes and logic, e.g. not just by its id or labels.
+	/// </summary>
+	internal List<Node> Nodes { get; set; } = new();
+
+	/// <summary>
+	/// This contains the ids of all nodes in a graph, regardless whether they are defined with attributes or not.  
+	/// </summary>
 	internal List<string> NodeIds { get; set; } = new();
-	
+
+	/// <summary>
+	/// Adds a `Node` class to the collection.
+	/// </summary>
+	/// <param name="node"></param>
+	/// <returns></returns>
 	public GraphNodes Add(Node node)
 	{
 		AddNodeToCollectionIfNotExists(node);
 		return this;
 	}
 
-	public void Add(IEnumerable<Node> nodes)
+	/// <summary>
+	/// Adds a collection of `Node`s to the graph nodes.
+	/// </summary>
+	/// <param name="node"></param>
+	/// <returns></returns>
+	public void AddRange(IEnumerable<Node> nodes)
 	{
 		foreach (var node in nodes)
 		{
@@ -21,13 +44,23 @@ public class GraphNodes
 		}
 	}
 
+	/// <summary>
+	/// Adds a via `string` Id a Node to the graph nodes.
+	/// </summary>
+	/// <param name="node"></param>
+	/// <returns></returns>
 	public void AddId(string id)
 	{
 		var node = new Node(id);
 		AddNodeToCollectionIfNotExists(node);
 	}
 
-	public void AddIds(IEnumerable<string> ids)
+	/// <summary>
+	/// Adds a via `string` Ids a collection of Nodes to the graph nodes.
+	/// </summary>
+	/// <param name="node"></param>
+	/// <returns></returns>
+	public void AddIdRange(IEnumerable<string> ids)
 	{
 		foreach (var label in ids)
 		{
@@ -35,7 +68,11 @@ public class GraphNodes
 			AddNodeToCollectionIfNotExists(node);
 		}
 	}
-	
+
+	/// <summary>
+	/// Helper fucntion that add a collection of `Node` if and only if they are not yet in the collection.
+	/// </summary>
+	/// <param name="nodes"></param>
 	internal void AddNodesToCollectionIfNotExists(params Node[] nodes)
 	{
 		foreach (var node in nodes)
@@ -49,15 +86,10 @@ public class GraphNodes
 		}
 	}
 
-	internal void AddNodeToCollectionIfNotExists(Node node)
-	{
-		if (!Nodes.Contains(node))
-		{
-			Nodes.Add(node);
-			NodeIds.Add(node.Id);
-		}
-	}
-
+	/// <summary>
+	/// Helper fucntion that add a collection of `Node` if and only if they are not yet in the collection.
+	/// </summary>
+	/// <param name="nodes"></param>
 	internal void AddNodesToCollectionIfNotExists(IEnumerable<Node> nodes)
 	{
 		foreach (var node in nodes)
@@ -67,6 +99,19 @@ public class GraphNodes
 				Nodes.Add(node);
 				NodeIds.Add(node.Id);
 			}
+		}
+	}
+
+	/// <summary>
+	/// Helper fucntion that adds a `Node` if and only if it is not yet in the collection.
+	/// </summary>
+	/// <param name="nodes"></param>
+	internal void AddNodeToCollectionIfNotExists(Node node)
+	{
+		if (!Nodes.Contains(node))
+		{
+			Nodes.Add(node);
+			NodeIds.Add(node.Id);
 		}
 	}
 }

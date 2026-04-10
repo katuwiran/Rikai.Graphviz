@@ -1,6 +1,6 @@
 namespace Rikai.Graphviz.Samples;
 
-public partial class Program
+public partial class Graphs
 {
 	public static Graph Meta
 	{
@@ -13,7 +13,7 @@ public partial class Program
 				Color = "green"
 			};
 
-			graph.Edges.Add([
+			graph.Edges.AddRange([
 				new("Start", "Planning") { Attributes = done with { Label = "prioritizing" } },
 				new("Planning", "Domain"),
 				new("Domain", ["Attributes", "Types"]),

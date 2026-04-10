@@ -15,7 +15,7 @@ internal partial class GraphParser
 
 		return result.ToString();
 	}
-	
+
 	internal static string ParseAttribute(string name, double? value)
 	{
 		return value == null ? "" : FormatAttribute(name, $"{value}");
@@ -47,7 +47,7 @@ internal partial class GraphParser
 	internal static string RemoveEmptyLines(StringBuilder sb)
 	{
 		return string.Join(Environment.NewLine,
-		                   sb.ToString().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+			sb.ToString().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
 	}
 
 	internal static string RemoveEmptyLines(string input)
@@ -55,7 +55,7 @@ internal partial class GraphParser
 		if (string.IsNullOrEmpty(input)) return string.Empty;
 
 		return string.Join(Environment.NewLine,
-		                   input.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+			input.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
 	}
 
 	internal List<Node> NodesWithAttributes(IEnumerable<Node> nodes)
@@ -63,13 +63,13 @@ internal partial class GraphParser
 		nodes.Where(n => n.Attributes != null);
 		return nodes.ToList();
 	}
-	
+
 	internal static string ParseAttributeEnum<T>(string name, T value)
 	{
 		if (value == null) return string.Empty;
-		
+
 		string valueStr = value.ToString() ?? "";
-			
+
 		return valueStr == "" ? "" : FormatAttribute(name, valueStr);
 	}
 }

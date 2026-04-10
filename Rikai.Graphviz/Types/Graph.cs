@@ -9,9 +9,10 @@ public class Graph
 	public GraphNodes Nodes { get; } = new();
 	public GraphEdges Edges { get; }
 
-
 	public Graph()
 	{
+		// as the logic of Edges has a dependency on the contents of a Graph
+		// we inject a reference of the Graph to the instance of Graph Edges
 		Edges = new(this);
 	}
 
