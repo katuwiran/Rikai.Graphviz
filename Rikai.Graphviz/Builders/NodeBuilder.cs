@@ -8,14 +8,24 @@ namespace Rikai.Graphviz.Builders
 		private readonly Node _node;
 
 		/// <summary>
-		/// Instantiates an empty GraphBuilder. Requires to pass the <c>GraphType</c> in the signature.
+		/// Instantiates an empty NodeBuilder. Requires to pass the <c>id</c> in the signature.
 		/// </summary>
 		/// <param name="id"></param>
 		public NodeBuilder(string id)
 		{
 			_node = new(id);
 		}
-
+		
+		/// <summary>
+		/// Instantiates an empty NodeBuilder. Requires to pass the <c>id</c> and <c>label</c> in the signature.
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="label"></param>
+		public NodeBuilder(string id, string label)
+		{
+			_node = new(id, label);
+		}
+		
 		/// <summary>
 		/// Allows the user to configure the Node's  Attributes.
 		/// This is the <c>id [attr=value]</c> syntax on the dot language.
@@ -38,9 +48,4 @@ namespace Rikai.Graphviz.Builders
 			return _node;
 		}
 	}
-
-	// --- SUB-BUILDERS FOR ATTRIBUTES ---
-	// These abstract away direct property assignment into chainable methods.
-
-	// (You would create a similar EdgeAttributeBuilder here)
 }
