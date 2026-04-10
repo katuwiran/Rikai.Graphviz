@@ -87,8 +87,8 @@ internal partial class GraphParser
 		                  {{ParseAttribute("fontname", attributes.FontName)}}
 		                  {{ParseAttribute("fontcolor", attributes.FontColor)}}
 		                  {{ParseAttribute("color", attributes.Color)}}
-		                  {{ParseAttributeEnum("arrowhead", attributes.ArrowHead)}}
-		                  {{ParseAttributeEnum("arrowtail", attributes.ArrowTail)}}
+		                  {{ParseAttributeEnum("arrowhead", attributes.ArrowHead).ToLower()}}
+		                  {{ParseAttributeEnum("arrowtail", attributes.ArrowTail).ToLower()}}
 		                  ]
 		                  """;
 		return IndentLines(RemoveEmptyLines(result), 1);
@@ -96,10 +96,11 @@ internal partial class GraphParser
 
 	internal string ParseGraphNodes(GraphNodes nodes)
 	{
-		var           nodeWithAttributes = nodes.Nodes.Where(n => !n.Attributes.IsEmpty);
+		// todo include an OR statement, where nodes not in edge definitions are included either way
+		// var nodeWithAttributes = nodes.Nodes.Where(n => !n.Attributes.IsEmpty);
 		var nodeWithAttributes = nodes.Nodes;
 
-		StringBuilder result             = new();
+		StringBuilder result = new();
 		foreach (var node in nodeWithAttributes.ToList())
 		{
 			result.AppendLine($"{Indent(1)}{ParseNode(node)}");
@@ -145,8 +146,8 @@ internal partial class GraphParser
 		            {ParseAttribute("fontname", attributes.FontName)}
 		            {ParseAttribute("fontcolor", attributes.FontColor)}
 		            {ParseAttribute("color", attributes.Color)}
-		            {ParseAttributeEnum("arrowhead", attributes.ArrowHead)}
-		            {ParseAttributeEnum("arrowtail", attributes.ArrowTail)}
+		            {ParseAttributeEnum("arrowhead", attributes.ArrowHead).ToLower()}
+		            {ParseAttributeEnum("arrowtail", attributes.ArrowTail).ToLower()}
 		            ]
 		            """;
 
