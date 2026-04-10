@@ -31,7 +31,7 @@ namespace Rikai.Graphviz.Builders
 		/// </summary>
 		/// <param name="configure"></param>
 		/// <returns></returns>
-		public GraphBuilder WithGraphAttributes(Action<GraphAttributeBuilder> configure)
+		public GraphBuilder WithAttributes(Action<GraphAttributeBuilder> configure)
 		{
 			var builder = new GraphAttributeBuilder(_graph.Attributes);
 			configure(builder);
@@ -44,7 +44,7 @@ namespace Rikai.Graphviz.Builders
 		/// </summary>
 		/// <param name="configure"></param>
 		/// <returns></returns>
-		public GraphBuilder WithDefaultNodeAttributes(Action<NodeAttributeBuilder> configure)
+		public GraphBuilder WithNodeAttributes(Action<NodeAttributeBuilder> configure)
 		{
 			// instantiates NodeAttributes
 			var builder = new NodeAttributeBuilder(_graph.Nodes.Attributes);
@@ -60,7 +60,7 @@ namespace Rikai.Graphviz.Builders
 		/// </summary>
 		/// <param name="configure"></param>
 		/// <returns></returns>
-		public GraphBuilder WithDefaultEdgeAttributes(Action<EdgeAttributeBuilder> configure)
+		public GraphBuilder WithEdgeAttributes(Action<EdgeAttributeBuilder> configure)
 		{
 			var builder = new EdgeAttributeBuilder(_graph.Edges.Attributes);
 			configure(builder);
@@ -104,7 +104,6 @@ namespace Rikai.Graphviz.Builders
 			_graph.Edges.Add(new Edge(from, to));
 			return this;
 		}
-
 
 		public GraphBuilder AddEdge(IEnumerable<Node> from, IEnumerable<Node> to)
 		{

@@ -12,7 +12,7 @@ public partial class Graphs
 
 			// define the Graph attributes
 			// this will be `graph [attr=value]`
-			.WithGraphAttributes(a => a
+			.WithAttributes(a => a
 				.FontName("Libertinus Sans")
 				.FontColor("cccccc")
 				.RankDir(RankDir.BT)
@@ -20,7 +20,7 @@ public partial class Graphs
 
 			// define the Graph Node attributes
 			// this will be `node [attr=value]`
-			.WithDefaultNodeAttributes(a => a
+			.WithNodeAttributes(a => a
 				.FontName("Libertinus Sans")
 				.FontColor("orange")
 				.Shape(Shape.Rectangle)
@@ -28,7 +28,7 @@ public partial class Graphs
 
 			// define the Graph Node attributes
 			// this will be `node [attr=value]`
-			.WithDefaultEdgeAttributes(a => a
+			.WithEdgeAttributes(a => a
 				.Color("green"))
 
 			// builds the graph object
