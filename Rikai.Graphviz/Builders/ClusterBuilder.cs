@@ -95,6 +95,25 @@ namespace Rikai.Graphviz.Builders
 			return this;
 		}
 
+		// node creator fully with fluent api
+		public ClusterBuilder AddNode(string id, Action<NodeBuilder> configure)
+		{
+			NodeBuilder node;
+			node = new(id);
+			configure(node);
+
+			return this;
+		}
+
+		// node creator fully with fluent api
+		public ClusterBuilder AddNode(string id, string label, Action<NodeBuilder> configure)
+		{
+			NodeBuilder node;
+			node = new(id, label);
+			configure(node);
+			return this;
+		}
+
 
 		public ClusterBuilder AddNodes(IEnumerable<string> ids)
 		{

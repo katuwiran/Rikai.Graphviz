@@ -41,37 +41,43 @@ public partial class Graphs
 
 		// You can instantiate another builder using a different graph and extend it
 		Graph continuation = new GraphBuilder(graph)
-			
+
 			// Adding a node using only ids
 			.AddNode("This is a node")
-			
+
 			// Adding a node using the node builder
 			.AddNode(new NodeBuilder("another node")
 				.WithAttributes(a => a
 					.Color("pink")
 					.Shape(Shape.Septagon))
 				.Build())
-			
+
+			// or alternatively, using the Action<T> syntax
+			.AddNode("real node", c => c
+				.WithAttributes(a => a
+					.Color("pink")
+					.Shape(Shape.Septagon)))
+
 			// Adding multiple nodes at once
 			.AddNodes([n1, n2, solo])
-			
+
 			// Adding edges
 			.AddEdge("A", "B")
 			.AddEdge(n1,  n2)
 			.AddEdge("A", ["C", "D", "E"])
-			
+
 			// Multiple edges at once
 			.AddEdges([
 				new(from: ["B", "C"], to: ["D", "E", "F"]),
 				new("C", "F")
 			])
-			
+
 			// Adding an edge using the fluent builder
 			.AddEdge(new EdgeBuilder()
 				.From("From this")
 				.To("To that")
 				.Build())
-			
+
 			// Adding a fluent edge with attributes
 			.AddEdge(new EdgeBuilder()
 				.From("Like that")
@@ -82,7 +88,7 @@ public partial class Graphs
 					.Label("test"))
 				.Build())
 			.Build();
-		
+
 		return continuation;
 	}
 }

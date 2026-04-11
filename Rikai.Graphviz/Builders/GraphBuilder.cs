@@ -90,6 +90,25 @@ namespace Rikai.Graphviz.Builders
 			_graph.Nodes.Add(node);
 			return this;
 		}
+		
+		// node creator fully with fluent api
+		public GraphBuilder AddNode(string id, Action<NodeBuilder> configure)
+		{
+			NodeBuilder node;
+			node = new(id);
+			configure(node);
+
+			return this;
+		}
+
+		// node creator fully with fluent api
+		public GraphBuilder AddNode(string id, string label, Action<NodeBuilder> configure)
+		{
+			NodeBuilder node;
+			node = new(id, label);
+			configure(node);
+			return this;
+		}
 
 		public GraphBuilder AddNodes(IEnumerable<string> ids)
 		{
@@ -164,12 +183,26 @@ namespace Rikai.Graphviz.Builders
 			return this;
 		}
 
+		public GraphBuilder AddCluster(string id, string label, bool isCluster = true, Action<ClusterBuilder>? configure = null)
+		{
+			var builder = new ClusterBuilder(id, label, isCluster);
+
+			if (configure is not null)
+			{
+				configure(builder);
+			}
+
+			_graph.Clusters.Add(builder.Build());
+			return this;
+		}
+
 		public GraphBuilder AddCluster(Cluster cluster, bool isCluster = true)
 		{
 			if (isCluster)
 			{
 				cluster.Attributes.IsCluster = true;
 			}
+
 			_graph.Clusters.Add(cluster);
 			return this;
 		}
@@ -183,8 +216,15 @@ namespace Rikai.Graphviz.Builders
 					cluster.Attributes.IsCluster = true;
 				}
 			}
-			
+
 			_graph.Clusters.AddRange(clusters);
+			return this;
+		}
+
+		public GraphBuilder AddHtml(Table table)
+		{
+			_graph.Tables.Add(table);
+
 			return this;
 		}
 
