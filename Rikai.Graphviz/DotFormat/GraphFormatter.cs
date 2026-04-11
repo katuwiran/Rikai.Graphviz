@@ -29,7 +29,7 @@ public class GraphFormatter
 
 		_sb.AppendLine(baseIndent + "graph [");
 		Append(innerIndent, Helpers.FormatAttribute("label", attr.Label));
-		Append(innerIndent, Helpers.FormatAttributeEnum("labellocation", attr.LabelLocation));
+		Append(innerIndent, Helpers.FormatAttributeEnum("labelloc", attr.LabelLocation).ToLower());
 		Append(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
 		Append(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
 		Append(innerIndent, Helpers.FormatAttribute("bgcolor",   attr.BackgroundColor));
