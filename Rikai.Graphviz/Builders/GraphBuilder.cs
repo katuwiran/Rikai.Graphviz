@@ -164,7 +164,7 @@ namespace Rikai.Graphviz.Builders
 			return this;
 		}
 
-		public GraphBuilder AddCluster(Cluster cluster, bool isCluster = false)
+		public GraphBuilder AddCluster(Cluster cluster, bool isCluster = true)
 		{
 			if (isCluster)
 			{
@@ -174,7 +174,7 @@ namespace Rikai.Graphviz.Builders
 			return this;
 		}
 
-		public GraphBuilder AddClusters(List<Cluster> clusters, bool isCluster = false)
+		public GraphBuilder AddClusters(List<Cluster> clusters, bool isCluster = true)
 		{
 			if (isCluster)
 			{
