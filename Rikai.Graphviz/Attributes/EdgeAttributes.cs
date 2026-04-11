@@ -20,24 +20,5 @@ public record EdgeAttributes
 	public double?    PenWidth      { get; set; }
 	public bool?      Decorate      { get; set; }
 
-	public bool IsEmpty => this is
-	{
-		ArrowHead    : null,
-		ArrowTail    : null,
-		Style        : null,
-		FontName     : null,
-		Label        : null,
-		TailLabel    : null,
-		HeadLabel    : null,
-		Color        : null,
-		FontColor    : null,
-		OutlineColor : null,
-		LabelDistance: null,
-		LabelAngle   : null,
-		FontSize     : null,
-		Length       : null,
-		MinLength    : null,
-		PenWidth     : null,
-		Decorate     : null,
-	};
+	public bool IsEmpty => this == new EdgeAttributes();
 }

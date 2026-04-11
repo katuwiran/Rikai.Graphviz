@@ -20,16 +20,5 @@ public record ClusterAttributes
 
 	public double? PenWidth { get; set; }
 
-	public bool IsEmpty => this is
-	{
-		IsCluster      : null,
-		Label          : null,
-		LabelLoc       : null,
-		FontColor      : null,
-		FontName       : null,
-		Color          : null,
-		FillColor      : null,
-		BackgroundColor: null,
-		PenColor       : null
-	};
+	public bool IsEmpty => this == new ClusterAttributes();
 }

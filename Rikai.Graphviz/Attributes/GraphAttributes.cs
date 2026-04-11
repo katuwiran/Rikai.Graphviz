@@ -8,20 +8,10 @@ public record GraphAttributes
 	public string? BackgroundColor { get; set; }
 
 	public LabelLocation? LabelLocation { get; set; }
-	public Splines? Splines { get; set; }
-	public RankDir? RankDir { get; set; }
-	public Overlap? Overlap { get; set; }
-	public LayoutEngine? LayoutEngine { get; set; }
+	public Splines?       Splines       { get; set; }
+	public RankDir?       RankDir       { get; set; }
+	public Overlap?       Overlap       { get; set; }
+	public LayoutEngine?  LayoutEngine  { get; set; }
 
-	public bool IsEmpty => this is
-	{
-		Label          : null,
-		FontColor      : null,
-		FontName       : null,
-		BackgroundColor: null,
-		Splines        : null,
-		RankDir        : null,
-		Overlap        : null,
-		LayoutEngine   : null,
-	};
+	public bool IsEmpty => this == new GraphAttributes();
 }

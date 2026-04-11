@@ -14,15 +14,5 @@ public record NodeAttributes
 	public double? Width    = null;
 	public double? FontSize = null;
 
-	public bool IsEmpty => this is
-	{
-		Shape    : null,
-		Style    : null,
-		FontName : null,
-		FontColor: null,
-		FillColor: null,
-		Color    : null,
-		Width    : null,
-		FontSize : null,
-	};
+	public bool IsEmpty => this == new NodeAttributes();
 }
