@@ -23,7 +23,7 @@ public class GraphAttributeBuilder
 		return this;
 	}
 
-	public GraphAttributeBuilder BackgroundColor(string value)
+	public GraphAttributeBuilder BgColor(string value)
 	{
 		_attr.BackgroundColor = value;
 		return this;
