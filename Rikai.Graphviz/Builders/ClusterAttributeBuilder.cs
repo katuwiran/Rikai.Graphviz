@@ -47,7 +47,7 @@ public class ClusterAttributeBuilder
 		return this;
 	}
 
-	public ClusterAttributeBuilder BackgroundColor(string value)
+	public ClusterAttributeBuilder BgColor(string value)
 	{
 		_attr.BackgroundColor = value;
 		return this;
