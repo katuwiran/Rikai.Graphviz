@@ -2,16 +2,15 @@ namespace Rikai.Graphviz;
 
 public record GraphAttributes
 {
-	public string? Label           { get; set; }
-	public string? FontColor       { get; set; }
-	public string? FontName        { get; set; }
-	public string? BackgroundColor { get; set; }
-
-	public LabelLocation? LabelLocation { get; set; }
-	public Splines?       Splines       { get; set; }
-	public RankDir?       RankDir       { get; set; }
-	public Overlap?       Overlap       { get; set; }
-	public LayoutEngine?  LayoutEngine  { get; set; }
+	public string?        Label           { get; set; }
+	public string?        FontColor       { get; set; }
+	public string?        FontName        { get; set; }
+	public string?        BackgroundColor { get; set; }
+	public LabelLocation? LabelLocation   { get; set; }
+	public Splines?       Splines         { get; set; }
+	public RankDir?       RankDir         { get; set; }
+	public Overlap?       Overlap         { get; set; }
+	public LayoutEngine?  LayoutEngine    { get; set; }
 
 	public bool IsEmpty => this == new GraphAttributes();
 }

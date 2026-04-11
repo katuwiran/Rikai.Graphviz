@@ -2,23 +2,16 @@ namespace Rikai.Graphviz;
 
 public record ClusterAttributes
 {
-	public bool?   IsCluster { get; set; }
-	public string? Label     { get; set; }
-
-	public LabelLocation? LabelLoc { get; set; }
-
-	// labeljust
-	// layer
-	// margin
-
-	public string? FontColor       { get; set; }
-	public string? FontName        { get; set; }
-	public string? Color           { get; set; }
-	public string? FillColor       { get; set; }
-	public string? BackgroundColor { get; set; }
-	public string? PenColor        { get; set; }
-
-	public double? PenWidth { get; set; }
+	public bool?          IsCluster       { get; set; }
+	public string?        Label           { get; set; }
+	public LabelLocation? LabelLoc        { get; set; }
+	public string?        FontColor       { get; set; }
+	public string?        FontName        { get; set; }
+	public string?        Color           { get; set; }
+	public string?        FillColor       { get; set; }
+	public string?        BackgroundColor { get; set; }
+	public string?        PenColor        { get; set; }
+	public double?        PenWidth        { get; set; }
 
 	public bool IsEmpty => this == new ClusterAttributes();
 }
