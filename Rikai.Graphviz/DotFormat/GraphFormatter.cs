@@ -155,6 +155,9 @@ public class GraphFormatter
 		string baseIndent  = Helpers.Indent(indentLevel + 1);
 		string innerIndent = Helpers.Indent(indentLevel + 2);
 
+		// cluster nodes reversed to appear as they are inputted
+		nodes.Reverse();
+
 		foreach (var node in nodes)
 		{
 			FormatNode(baseIndent, innerIndent, node);
