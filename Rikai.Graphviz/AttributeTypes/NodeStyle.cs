@@ -5,7 +5,7 @@ public enum NodeStyle
 	Dashed,
 	Dotted,
 	Solid,
-	Invisible,
+	Invis,
 	Bold,
 	Filled,
 	Striped,

@@ -17,7 +17,7 @@ public class NodeAttributeBuilder
 		return this;
 	}
 
-	public NodeAttributeBuilder NodeStyle(NodeStyle value)
+	public NodeAttributeBuilder Style(NodeStyle value)
 	{
 		_attr.Style = value;
 		return this;
