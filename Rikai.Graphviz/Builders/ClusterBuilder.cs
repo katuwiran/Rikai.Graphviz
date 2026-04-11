@@ -7,17 +7,28 @@ namespace Rikai.Graphviz.Builders
 	{
 		private readonly Cluster _cluster;
 		private          string? _label;
+		private          bool    _isCluster;
 
-		public ClusterBuilder(string id)
+		public ClusterBuilder(string id, bool isCluster = false)
 		{
-			_cluster = new(id);
+			_cluster   = new(id);
+			_isCluster = isCluster;
+			if (isCluster)
+			{
+				_cluster.Attributes.IsCluster = true;
+			}
 		}
 
-		public ClusterBuilder(string id, string label)
+		public ClusterBuilder(string id, string label, bool isCluster = false)
 		{
 			_cluster = new(id, label);
-			
+
 			_label = label;
+
+			if (isCluster)
+			{
+				_cluster.Attributes.IsCluster = true;
+			}
 		}
 
 		public ClusterBuilder(Cluster cluster)
@@ -34,7 +45,12 @@ namespace Rikai.Graphviz.Builders
 			{
 				_cluster.Attributes.Label = _label;
 			}
-			
+
+			if (_isCluster)
+			{
+				_cluster.Attributes.IsCluster = _isCluster;
+			}
+
 			return this;
 		}
 
