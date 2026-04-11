@@ -73,6 +73,10 @@ public class GraphFormatter
 
 		if (!clusters.Any()) return;
 
+		// by default, graphviz renders first the last defined subgraph
+		// for now, by default the lib will reverse it first
+		clusters.Reverse();
+
 		foreach (var cluster in clusters)
 		{
 			FormatCluster(_indent, cluster);
@@ -81,8 +85,8 @@ public class GraphFormatter
 
 	public void FormatCluster(int currentIndent, Cluster cluster)
 	{
-		string baseIndent    = Helpers.Indent(currentIndent);
-		string innerIndent   = Helpers.Indent(currentIndent + 1);
+		string baseIndent  = Helpers.Indent(currentIndent);
+		string innerIndent = Helpers.Indent(currentIndent + 1);
 
 		var attr = cluster.Attributes;
 
@@ -113,13 +117,17 @@ public class GraphFormatter
 		FormatClusterNodeAttributes(currentIndent, cluster.Nodes.Attributes);
 		FormatClusterNodes(currentIndent, cluster.Nodes.Collection);
 		FormatClusterEdges(currentIndent, cluster.Edges.Collection);
-		FormatNestedClusters(currentIndent+1, cluster.Clusters.Collection);
-		_sb.AppendLine(baseIndent + "}");
+		FormatNestedClusters(currentIndent + 1, cluster.Clusters.Collection);
+		_sb.AppendLine(baseIndent          + "}");
 	}
-	
-	public void FormatNestedClusters(int currentIndent, IEnumerable<Cluster> clusters)
+
+	public void FormatNestedClusters(int currentIndent, List<Cluster> clusters)
 	{
 		if (!clusters.Any()) return;
+
+		// by default, graphviz renders first the last defined subgraph
+		// for now, by default the lib will reverse it first
+		clusters.Reverse();
 
 		foreach (var cluster in clusters)
 		{
@@ -127,7 +135,7 @@ public class GraphFormatter
 		}
 	}
 
-	public void FormatClusterEdges(int currentIndent, IEnumerable<Edge> edges)
+	public void FormatClusterEdges(int currentIndent, List<Edge> edges)
 	{
 		if (!edges.Any()) return;
 
@@ -142,7 +150,7 @@ public class GraphFormatter
 		}
 	}
 
-	public void FormatClusterNodes(int currentIndent, IEnumerable<Node> nodes)
+	public void FormatClusterNodes(int currentIndent, List<Node> nodes)
 	{
 		if (!nodes.Any()) return;
 
