@@ -73,10 +73,6 @@ public class GraphFormatter
 
 		if (!clusters.Any()) return;
 
-		// by default, graphviz renders first the last defined subgraph
-		// for now, by default the lib will reverse it first
-		clusters.Reverse();
-
 		foreach (var cluster in clusters)
 		{
 			FormatCluster(_indent, cluster);
