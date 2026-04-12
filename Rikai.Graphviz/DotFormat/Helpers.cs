@@ -6,19 +6,9 @@ internal static class Helpers
 {
 	static string _indentChar = "    ";
 
-	internal static string FormatAttribute(string name, bool? value)
+	internal static string FormatAttribute<T>(string name, T? value)
 	{
 		return value == null ? "" : ParseAttribute(name, $"{value}");
-	}
-
-	internal static string FormatAttribute(string name, double? value)
-	{
-		return value == null ? "" : ParseAttribute(name, $"{value}");
-	}
-
-	internal static string FormatAttribute(string name, string? value)
-	{
-		return value == null ? "" : ParseAttribute(name, value);
 	}
 
 	internal static string Indent(int indentLevel)
