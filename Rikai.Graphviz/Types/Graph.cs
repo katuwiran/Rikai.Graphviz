@@ -6,9 +6,10 @@ public class Graph
 
 	public GraphAttributes Attributes { get; set; } = new();
 
-	public GraphNodes    Nodes    { get; } = new();
-	public GraphEdges    Edges    { get; }
-	public GraphClusters Clusters { get; } = new();
+	public GraphNodes      Nodes    { get; } = new();
+	public GraphEdges      Edges    { get; }
+	public GraphClusters   Clusters { get; } = new();
+	public List<HtmlTable> Tables   { get; } = new();
 
 
 	public Graph()
