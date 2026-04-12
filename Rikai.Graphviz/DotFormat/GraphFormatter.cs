@@ -33,7 +33,7 @@ public class GraphFormatter
 		Append(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
 		Append(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
 		Append(innerIndent, Helpers.FormatAttribute("bgcolor",   attr.BackgroundColor));
-		Append(innerIndent, Helpers.FormatAttribute("splines", attr.Splines));
+		Append(innerIndent, Helpers.FormatAttribute("splines",   attr.Splines).ToLower());
 		Append(innerIndent, Helpers.FormatAttribute("rankdir", attr.RankDir));
 		Append(innerIndent, Helpers.FormatAttribute("overlap", attr.Overlap).ToLower());
 		_sb.AppendLine(baseIndent + "]");
