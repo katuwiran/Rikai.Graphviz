@@ -34,7 +34,7 @@ public class HtmlTableBuilder
 	public HtmlTableBuilder AddHeaderRow(string title, string bgColor = "#E8EDF2")
 	{
 		var row = new Row();
-		row.Cells.Add(new Cell
+		row.Cells.Add(new HtmlCell
 		{
 			Label   = title,
 			ColSpan = 2,
@@ -52,10 +52,10 @@ public class HtmlTableBuilder
 		var row = new Row();
 
 		// Left Cell (Column Name)
-		row.Cells.Add(new Cell { Label = columnName, Port = port, Align = HtmlAlign.Left });
+		row.Cells.Add(new HtmlCell { Label = columnName, Port = port, Align = HtmlAlign.Left });
 
 		// Right Cell (Data Type)
-		row.Cells.Add(new Cell { Label = dataType, Align = HtmlAlign.Right });
+		row.Cells.Add(new HtmlCell { Label = dataType, Align = HtmlAlign.Right });
 
 		_table.Rows.Add(row);
 		return this;

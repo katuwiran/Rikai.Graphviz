@@ -4,7 +4,7 @@ public class HtmlRowBuilder
 {
 	private readonly Row _row = new();
 
-	public HtmlRowBuilder AddCell(Cell cell)
+	public HtmlRowBuilder AddCell(HtmlCell cell)
 	{
 		_row.Cells.Add(cell);
 		return this;
