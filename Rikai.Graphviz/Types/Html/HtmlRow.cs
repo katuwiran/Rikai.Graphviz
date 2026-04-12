@@ -1,6 +1,6 @@
 namespace Rikai.Graphviz;
 
-public class Row
+public class HtmlRow
 {
 	public List<HtmlCell> Cells { get; set; } = new();
 }

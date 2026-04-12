@@ -2,7 +2,7 @@ namespace Rikai.Graphviz.Builders;
 
 public class HtmlRowBuilder
 {
-	private readonly Row _row = new();
+	private readonly HtmlRow _row = new();
 
 	public HtmlRowBuilder AddCell(HtmlCell cell)
 	{

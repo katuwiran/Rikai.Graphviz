@@ -23,7 +23,7 @@ public class HtmlTableBuilder
 		return this;
 	}
 
-	public HtmlTableBuilder AddRow(Row row)
+	public HtmlTableBuilder AddRow(HtmlRow row)
 	{
 		_table.Rows.Add(row);
 		
