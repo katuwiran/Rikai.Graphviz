@@ -200,6 +200,28 @@ namespace Rikai.Graphviz.Builders
 			return this;
 		}
 
+		public ClusterBuilder AddCluster(string id, string label, bool isCluster = true, Action<ClusterBuilder>? configure = null)
+		{
+			var builder = new ClusterBuilder(id, label, isCluster);
+
+			if (configure is not null)
+			{
+				configure(builder);
+			}
+
+			_cluster.Clusters.Add(builder.Build());
+			return this;
+		}
+
+		public ClusterBuilder AddHtml(string id, Action<HtmlTableBuilder> configure)
+		{
+			var builder = new HtmlTableBuilder(id);
+			configure(builder);
+
+			_cluster.HtmlTables.Add(builder.Build());
+			return this;
+		}
+
 		/// <summary>
 		/// Returns the Graph.
 		/// </summary>

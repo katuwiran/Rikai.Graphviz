@@ -196,34 +196,21 @@ namespace Rikai.Graphviz.Builders
 			return this;
 		}
 
-		public GraphBuilder AddCluster(Cluster cluster, bool isCluster = true)
+		public GraphBuilder AddCluster(Cluster cluster)
 		{
-			if (isCluster)
-			{
-				cluster.Attributes.IsCluster = true;
-			}
-
 			_graph.Clusters.Add(cluster);
 			return this;
 		}
 
-		public GraphBuilder AddClusters(List<Cluster> clusters, bool isCluster = true)
+		public GraphBuilder AddClusters(List<Cluster> clusters)
 		{
-			if (isCluster)
-			{
-				foreach (var cluster in clusters)
-				{
-					cluster.Attributes.IsCluster = true;
-				}
-			}
-
 			_graph.Clusters.AddRange(clusters);
 			return this;
 		}
 
-		public GraphBuilder AddHtml(Table table)
+		public GraphBuilder AddHtml(HtmlTable htmlTable)
 		{
-			_graph.Tables.Add(table);
+			_graph.Tables.Add(htmlTable);
 
 			return this;
 		}
