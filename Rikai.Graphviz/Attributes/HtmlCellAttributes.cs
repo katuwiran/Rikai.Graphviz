@@ -11,8 +11,7 @@ public record HtmlCellAttributes
 	public string?     Color       { get; set; }
 	public int?        ColSpan     { get; set; }
 	public double?     Height      { get; set; }
-	public string?     Id          { get; set; }
-	public string?     Port        { get; set; }
+	public PortPos?    Port        { get; set; }
 	public int?        RowSpan     { get; set; }
 	public HtmlStyle? Style       { get; set; }
 	public double?     Width       { get; set; }

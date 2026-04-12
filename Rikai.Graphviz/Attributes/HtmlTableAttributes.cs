@@ -11,7 +11,6 @@ public record HtmlTableAttributes
 	public int?        CellPadding { get; set; }
 	public int?        CellSpacing { get; set; }
 	public string?     Color       { get; set; }
-	public string?     Id          { get; set; }
 	public string?     Port        { get; set; }
 	public HtmlStyle? Style       { get; set; }
 
