@@ -2,7 +2,7 @@ namespace Rikai.Graphviz;
 
 // more here https://graphviz.org/doc/info/shapes.html#html
 
-public enum HtsmlStyle
+public enum HtmlStyle
 {
 	Rounded,
 	Radial

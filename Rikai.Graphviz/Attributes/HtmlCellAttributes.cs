@@ -14,7 +14,7 @@ public record HtmlCellAttributes
 	public string?     Id          { get; set; }
 	public string?     Port        { get; set; }
 	public int?        RowSpan     { get; set; }
-	public HtsmlStyle? Style       { get; set; }
+	public HtmlStyle? Style       { get; set; }
 	public double?     Width       { get; set; }
 
 	public bool IsEmpty => this == new HtmlCellAttributes();

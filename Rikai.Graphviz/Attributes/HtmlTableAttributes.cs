@@ -13,7 +13,7 @@ public record HtmlTableAttributes
 	public string?     Color       { get; set; }
 	public string?     Id          { get; set; }
 	public string?     Port        { get; set; }
-	public HtsmlStyle? Style       { get; set; }
+	public HtmlStyle? Style       { get; set; }
 
 	public bool IsEmpty => this == new HtmlTableAttributes();
 }
