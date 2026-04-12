@@ -18,15 +18,17 @@ internal static class Helpers
 
 	internal static string ParseAttribute(string name, string value)
 	{
-		return $"\"{name}\" = \"{value}\"\n";
+		return $"\"{name}\" = \"{value}\"";
+	}
+	
+	// html attributes
+	internal static string FormatHtmlAttribute<T>(string name, T? value)
+	{
+		return value == null ? "" : ParseHtmlAttribute(name, $"{value}");
 	}
 
-	internal static string FormatAttributeEnum<T>(string name, T value)
+	internal static string ParseHtmlAttribute(string name, string value)
 	{
-		if (value == null) return string.Empty;
-
-		string valueStr = value.ToString() ?? "";
-
-		return valueStr == "" ? "" : ParseAttribute(name, valueStr);
+		return $" {name}=\"{value}\" ";
 	}
 }

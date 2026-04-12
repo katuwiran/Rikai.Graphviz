@@ -28,14 +28,14 @@ public class GraphFormatter
 		string innerIndent = Helpers.Indent(_indent + 1);
 
 		_sb.AppendLine(baseIndent + "graph [");
-		Append(innerIndent, Helpers.FormatAttribute("label", attr.Label));
-		Append(innerIndent, Helpers.FormatAttribute("labelloc", attr.LabelLocation).ToLower());
-		Append(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
-		Append(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
-		Append(innerIndent, Helpers.FormatAttribute("bgcolor",   attr.BackgroundColor));
-		Append(innerIndent, Helpers.FormatAttribute("splines",   attr.Splines).ToLower());
-		Append(innerIndent, Helpers.FormatAttribute("rankdir", attr.RankDir));
-		Append(innerIndent, Helpers.FormatAttribute("overlap", attr.Overlap).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
+		AppendLine(innerIndent, Helpers.FormatAttribute("labelloc",  attr.LabelLocation).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("bgcolor",   attr.BackgroundColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("splines",   attr.Splines).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("rankdir",   attr.RankDir));
+		AppendLine(innerIndent, Helpers.FormatAttribute("overlap",   attr.Overlap).ToLower());
 		_sb.AppendLine(baseIndent + "]");
 	}
 
@@ -197,16 +197,16 @@ public class GraphFormatter
 	{
 		if (attr.IsEmpty) return;
 
-		Append(innerIndent, Helpers.FormatAttribute("cluster", attr.IsCluster).ToLower());
-		Append(innerIndent, Helpers.FormatAttribute("label",   attr.Label));
-		Append(innerIndent, Helpers.FormatAttribute("labelloc", attr.LabelLoc));
-		Append(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
-		Append(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
-		Append(innerIndent, Helpers.FormatAttribute("color",     attr.Color));
-		Append(innerIndent, Helpers.FormatAttribute("fillcolor", attr.FillColor));
-		Append(innerIndent, Helpers.FormatAttribute("bgcolor",   attr.BackgroundColor));
-		Append(innerIndent, Helpers.FormatAttribute("pencolor",  attr.PenColor));
-		Append(innerIndent, Helpers.FormatAttribute("penwidth", attr.PenWidth));
+		AppendLine(innerIndent, Helpers.FormatAttribute("cluster",   attr.IsCluster).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
+		AppendLine(innerIndent, Helpers.FormatAttribute("labelloc",  attr.LabelLoc));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
+		AppendLine(innerIndent, Helpers.FormatAttribute("color",     attr.Color));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fillcolor", attr.FillColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("bgcolor",   attr.BackgroundColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("pencolor",  attr.PenColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("penwidth",  attr.PenWidth));
 	}
 
 	public void FormatGraphNodes()
@@ -244,22 +244,22 @@ public class GraphFormatter
 
 	internal void FormatNodeAttributes(string innerIndent, NodeAttributes attr)
 	{
-		Append(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
-		Append(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
-		Append(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
-		Append(innerIndent, Helpers.FormatAttribute("fillcolor", attr.FillColor));
-		Append(innerIndent, Helpers.FormatAttribute("color",     attr.Color));
-		Append(innerIndent, Helpers.FormatAttribute("shape", attr.Shape).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fillcolor", attr.FillColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("color",     attr.Color));
+		AppendLine(innerIndent, Helpers.FormatAttribute("shape",     attr.Shape).ToLower());
 	}
 
 	internal void FormatEdgeAttributes(string innerIndent, EdgeAttributes attr)
 	{
-		Append(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
-		Append(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
-		Append(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
-		Append(innerIndent, Helpers.FormatAttribute("color",     attr.Color));
-		Append(innerIndent, Helpers.FormatAttribute("arrowhead", attr.ArrowHead).ToLower());
-		Append(innerIndent, Helpers.FormatAttribute("arrowtail", attr.ArrowTail).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("color",     attr.Color));
+		AppendLine(innerIndent, Helpers.FormatAttribute("arrowhead", attr.ArrowHead).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("arrowtail", attr.ArrowTail).ToLower());
 	}
 
 	internal void FormatNode(string baseIndent, string innerIndent, Node node)
@@ -313,7 +313,7 @@ public class GraphFormatter
 	{
 		if (!string.IsNullOrWhiteSpace(formattedAttr))
 		{
-			_sb.Append($"{innerIndent}{formattedAttr}");
+			_sb.Append($"{indent}{formattedAttr}");
 		}
 	}
 }
