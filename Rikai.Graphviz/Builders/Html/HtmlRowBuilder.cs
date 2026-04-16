@@ -18,7 +18,15 @@ public class HtmlRowBuilder
 		return this;
 	}
 
-	public Row Build()
+	public HtmlRowBuilder AddCell(string id, string text, Action<HtmlCellBuilder> configure)
+	{
+		var builder = new HtmlCellBuilder(id, text);
+		configure(builder);
+		_row.Cells.Add(builder.Build());
+		return this;
+	}
+
+	public HtmlRow Build()
 	{
 		return _row;
 	}
