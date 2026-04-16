@@ -10,9 +10,10 @@ public class HtmlRowBuilder
 		return this;
 	}
 
-	public HtmlRowBuilder AddCell(string id, Action<HtmlCellBuilder> cellBuilder)
+	public HtmlRowBuilder AddCell(string id, Action<HtmlCellBuilder> configure)
 	{
-		var builder = new HtmlCellBuilder(id);
+		var builder = new HtmlCellBuilder(id, null);
+		configure(builder);
 		_row.Cells.Add(builder.Build());
 		return this;
 	}
