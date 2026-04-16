@@ -17,9 +17,9 @@ public class HtmlTableAttributeBuilder
     public HtmlTableAttributeBuilder Port(string value)     { _attr.Port        = value; return this; }
 	// @formatter:on
 
-    public HtmlTableAttributeBuilder Style(HtmlStyle value)
-    {
-        _attr.Style = value;
-        return this;
-    }
+	public HtmlTableAttributeBuilder Style(HtmlStyle value)
+	{
+		_attr.Style = value;
+		return this;
+	}
 }

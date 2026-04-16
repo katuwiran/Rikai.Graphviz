@@ -8,14 +8,14 @@ public class Node
 
 	public Node(string id, NodeAttributes? attributes = null)
 	{
-		Id = id;
+		Id         = id;
 		Attributes = attributes ?? new NodeAttributes();
 	}
 
 	public Node(string id, string label, NodeAttributes? attributes = null)
 	{
-		Id    = id;
-		Label = label;
+		Id         = id;
+		Label      = label;
 		Attributes = attributes ?? new NodeAttributes();
 	}
 }

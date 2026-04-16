@@ -21,6 +21,6 @@ public class HtmlCellAttributeBuilder
 	public HtmlCellAttributeBuilder Style(HtmlStyle value) { _attr.Style       = value; return this; }
 	public HtmlCellAttributeBuilder Width(double    value) { _attr.Width       = value; return this; }
 	// @formatter:on 
-	
+
 	public HtmlCellAttributes Build() => _attr;
 }

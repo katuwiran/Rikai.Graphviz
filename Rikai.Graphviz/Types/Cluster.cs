@@ -6,10 +6,10 @@ public class Cluster
 	public string            Id         { get; set; }
 	public string?           Label      { get; set; }
 
-	public ClusterNodes  Nodes      { get; } = new();
-	public ClusterEdges  Edges      { get; }
-	public GraphClusters Clusters   { get; set; } = new();
-	public List<HtmlTable>   HtmlTables { get; set; } = new(); 
+	public ClusterNodes    Nodes      { get; } = new();
+	public ClusterEdges    Edges      { get; }
+	public GraphClusters   Clusters   { get; set; } = new();
+	public List<HtmlTable> HtmlTables { get; set; } = new();
 
 	public Cluster(string id)
 	{

@@ -6,9 +6,9 @@ public class HtmlCell
 	public string?            Text       { get; set; }
 	public HtmlCellAttributes Attributes { get; set; } = new();
 
-	public HtmlCell(string id,  string? text = null)
+	public HtmlCell(string id, string? text = null)
 	{
-		Id = id;
+		Id   = id;
 		Text = text;
 	}
 }
