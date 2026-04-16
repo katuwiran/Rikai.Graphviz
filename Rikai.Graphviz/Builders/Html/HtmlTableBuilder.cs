@@ -20,6 +20,7 @@ public class HtmlTableBuilder
 	{
 		var builder = new HtmlRowBuilder();
 		configure(builder);
+		_table.Rows.Add(builder.Build());
 		return this;
 	}
 
