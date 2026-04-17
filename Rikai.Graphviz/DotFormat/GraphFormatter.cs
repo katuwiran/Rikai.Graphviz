@@ -396,7 +396,7 @@ public class GraphFormatter
 		Append(baseIndent, "<TD");
 		FormatCellAttributes(innerIndent, cell.Attributes);
 		Append(">");
-		Append($"\"{cell.Text}\"");
+		Append($"{cell.Text}");
 		AppendLine("</TD>");
 	}
 
