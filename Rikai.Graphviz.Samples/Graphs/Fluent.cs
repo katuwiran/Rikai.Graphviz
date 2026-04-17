@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using Rikai.Graphviz.Builders;
 
 namespace Rikai.Graphviz.Samples;
@@ -12,7 +11,7 @@ public partial class Graphs
 
 			// define the Graph attributes
 			// this will be `graph [attr=value]`
-			.WithAttributes(a => a
+			.WithAttributes(graphAttr => graphAttr
 				.FontName("Libertinus Sans")
 				.FontColor("cccccc")
 				.RankDir(RankDir.LR)
@@ -21,7 +20,7 @@ public partial class Graphs
 
 			// define the Graph Node attributes
 			// this will be `node [attr=value]`
-			.WithNodeAttributes(a => a
+			.WithNodeAttributes(graphNodeAttr => graphNodeAttr
 				.FontName("Libertinus Sans")
 				.FontColor("orange")
 				.Shape(Shape.Rectangle)
@@ -30,7 +29,7 @@ public partial class Graphs
 
 			// define the Graph Node attributes
 			// this will be `node [attr=value]`
-			.WithEdgeAttributes(a => a
+			.WithEdgeAttributes(graphEdgeAttr => graphEdgeAttr
 				.Color("green")
 			)
 
@@ -50,7 +49,7 @@ public partial class Graphs
 
 			// Adding a node using the node builder
 			.AddNode(new NodeBuilder("another node")
-				.WithAttributes(a => a
+				.WithAttributes(nodeAttr => nodeAttr
 					.Color("pink")
 					.Shape(Shape.Septagon)
 				)
@@ -59,7 +58,7 @@ public partial class Graphs
 
 			// or alternatively, using the Action<T> syntax
 			.AddNode("real node", c => c
-				.WithAttributes(a => a
+				.WithAttributes(nodeAttr => nodeAttr
 					.Color("pink")
 					.Shape(Shape.Septagon)
 				)
@@ -88,15 +87,11 @@ public partial class Graphs
 			)
 
 			// Adding a fluent edge with attributes
-			.AddEdge(new EdgeBuilder()
+			.AddEdge(edge => edge
 				.From("Like that")
 				.To("But to there")
-				.WithAttributes(a => a
-					.ArrowHead(ArrowType.Vee)
-					.Color("pink")
-					.Label("test")
-				)
-				.Build()
+				.WithAttributes(edgeAttr => edgeAttr
+					.Color("green"))
 			)
 			.Build();
 

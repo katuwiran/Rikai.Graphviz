@@ -56,14 +56,14 @@ public partial class Graphs
 				.Label("Rikai's Graphviz Library Structure!")
 				.LabelLocation(LabelLocation.Top)
 				.Splines(Splines.Compound)
-				.BgColor(colors.Transparent)
+				.BgColor("white")
 			)
 
 			// node attributes
 			.WithNodeAttributes(graphNodes => graphNodes
 				.Shape(Shape.Rectangle)
 				.Style(NodeStyle.Filled)
-				.Color(colors.Transparent)
+				.Color("white")
 				.FontSize(9)
 			)
 
@@ -77,270 +77,688 @@ public partial class Graphs
 			// Cluster: Rikai.Graphviz
 			.AddCluster(id: "gv", label: "Rikai.Graphviz", configure: cluster => cluster
 					.WithAttributes(clusterAttr => clusterAttr
-						.BgColor(colors.Transparent)
-						.PenColor(colors.Plum)
+						.BgColor("white")
+						.PenColor(colors.Blue)
 					)
 					.WithNodeAttributes(nodeAttr => nodeAttr
 						.Color("skyblue")
 					)
-					// Table: Attributes
-					.AddHtml("t_attr", html => html
-						.WithAttributes(htmlAttr => htmlAttr
-							.Border(1)
-							.CellBorder(1)
-							.CellSpacing(0)
-							.CellPadding(5)
-							.Color(colors.Plum)
+					// Cluster: Attributes
+					.AddCluster(id: "gv_attr", label: "Attributes", configure: cluster2 => cluster2
+						.WithAttributes(clusterAttr => clusterAttr
+							.BgColor("white")
+							.PenColor(colors.Blue)
 						)
-						.WithNodeAttributes(node => node
-							.Shape(Shape.Plain)
+						.WithNodeAttributes(nodeAttr => nodeAttr
+							.Color("skyblue")
 						)
-						// Row: Title
-						.AddRow(row => row
-							.AddCell("t_attr_title", "Attributes ;)", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(2)
-									.Align(HtmlAlign.Center)
+						// Table: Attributes
+						.AddHtml("t_attr", html => html
+							.WithAttributes(htmlAttr => htmlAttr
+								.Border(1)
+								.CellBorder(1)
+								.CellSpacing(0)
+								.CellPadding(5)
+								.Color(colors.Cyan)
+							)
+							.WithNodeAttributes(node => node
+								.Shape(Shape.Plain)
+							)
+							// Row: class | cluster
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "Cluster Attributes", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-						)
-						// Row: class | cluster
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
+							// Row: class | edge
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "Edge Attributes", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-							.AddCell("", "Cluster Attributes", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
+							// Row: class | graph
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "Graph Attributes", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-						)
-						// Row: class | edge
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
+							// Row: class | htmlcell
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "Html Cell Attributes", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-							.AddCell("", "Edge Attributes", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
+							// Row: class | html table
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "Html Table Attributes", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-						)
-						// Row: class | graph
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
+							// Row: class | node
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "Node Attributes", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-							.AddCell("", "Graph Attributes", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
+							// Row: class | edge
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
 								)
-							)
-						)
-						// Row: class | htmlcell
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
-								)
-							)
-							.AddCell("", "Html Cell Attributes", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
-								)
-							)
-						)
-						// Row: class | html table
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
-								)
-							)
-							.AddCell("", "Html Table Attributes", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
-								)
-							)
-						)
-						// Row: class | node
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
-								)
-							)
-							.AddCell("", "Node Attributes", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
-								)
-							)
-						)
-						// Row: class | edge
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
-								)
-							)
-							.AddCell("", "Edge Attributes", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
+								.AddCell("", "Edge Attributes", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
 						)
 					)
 
-					// Table: DotFormat
-					.AddHtml("t_dot", html => html
-						.WithAttributes(htmlAttr => htmlAttr
-							.Border(1)
-							.CellBorder(1)
-							.CellSpacing(0)
-							.CellPadding(5)
-							.Color(colors.Cyan)
+					// Cluster: Attribute Types
+					.AddCluster(id: "gv_attrTypes", label: "Attribute Types", configure: cluster2 => cluster2
+						.WithAttributes(cellAttr => cellAttr
+							.BgColor("white")
+							.PenColor(colors.Cyan)
 						)
-						.WithNodeAttributes(node => node
+						.WithNodeAttributes(nodeAttr => nodeAttr
 							.Shape(Shape.Plain)
+							.Color("skyblue")
 						)
-						// Row: Title
-						.AddRow(row => row
-							.AddCell("t_attr_title", "DotFormat", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(2)
-									.Align(HtmlAlign.Center)
+						// Table: Attribute Types
+						.AddHtml("t_attrTypes", html => html
+							.WithAttributes(htmlAttr => htmlAttr
+								.Border(1)
+								.CellBorder(1)
+								.CellSpacing(0)
+								.CellPadding(5)
+								.Color(colors.Cyan)
+							)
+							.WithNodeAttributes(node => node.Shape(Shape.Plain)
+							)
+							// Row: ArrowType
+							.AddRow(row => row
+								.AddCell("", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "ArrowType", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-						)
-						// Row: DotGenerator
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
+							// Row: EdgeStyle
+							.AddRow(row => row
+								.AddCell("enum", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "EdgeStyle", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-							.AddCell("", "DotGenerator", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
+							// Row: EdgeStyle
+							.AddRow(row => row
+								.AddCell("enum", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "EdgeStyle", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-						)
-						// Row: GraphFormatter
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
+							// Row: GraphType
+							.AddRow(row => row
+								.AddCell("enum", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "GraphType", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-							.AddCell("", "GraphFormatter", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
+							// Row: LabelLocation
+							.AddRow(row => row
+								.AddCell("enum", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "LabelLocation", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-						)
-						// Row: Helpers
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
+							// Row: LayoutEngine
+							.AddRow(row => row
+								.AddCell("enum", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "LayoutEngine", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-							.AddCell("", "Helpers", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
+							// Row: NodeStyle
+							.AddRow(row => row
+								.AddCell("enum", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "NodeStyle", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
+								)
+							)
+							// Row: Overlap
+							.AddRow(row => row
+								.AddCell("enum", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "Overlap", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
+								)
+							)
+							// Row: PortPos
+							.AddRow(row => row
+								.AddCell("enum", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "PortPos", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
+								)
+							)
+							// Row: RankDir
+							.AddRow(row => row
+								.AddCell("enum", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "RankDir", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
+								)
+							)
+							// Row: Shape
+							.AddRow(row => row
+								.AddCell("enum", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "Shape", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
+								)
+							)
+							// Row: Splines
+							.AddRow(row => row
+								.AddCell("enum", "enum", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "Splines", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
 						)
 					)
-					// Table: DotFormat
-					.AddHtml("t_dot", html => html
-						.WithAttributes(htmlAttr => htmlAttr
-							.Border(1)
-							.CellBorder(1)
-							.CellSpacing(0)
-							.CellPadding(5)
-							.Color(colors.Cyan)
+					// Cluster: DotFormat
+					.AddCluster(id: "gv_dot", label: "DotFormat", configure: cluster2 => cluster2
+						.WithAttributes(clusterAttr => clusterAttr
+							.BgColor("white")
+							.PenColor(colors.Blue)
 						)
-						.WithNodeAttributes(node => node
-							.Shape(Shape.Plain)
+						.WithNodeAttributes(nodeAttr => nodeAttr
+							.Color("skyblue")
 						)
-						// Row: Title
-						.AddRow(row => row
-							.AddCell("t_attr_title", "DotFormat", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(2)
-									.Align(HtmlAlign.Center)
+						// Table: DotFormat
+						.AddHtml("t_dot", html => html
+							.WithAttributes(htmlAttr => htmlAttr
+								.Border(1)
+								.CellBorder(1)
+								.CellSpacing(0)
+								.CellPadding(5)
+								.Color(colors.Cyan)
+							)
+							.WithNodeAttributes(node => node
+								.Shape(Shape.Plain)
+							)
+							// Row: DotGenerator
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "DotGenerator", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
+								)
+							)
+							// Row: GraphFormatter
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "GraphFormatter", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
+								)
+							)
+							// Row: Helpers
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "Helpers", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
 						)
-						// Row: DotGenerator
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
+					)
+					// Cluster: Builders
+					.AddCluster(id: "gv_builders", label: "Builders", configure: cluster2 => cluster2
+						.WithAttributes(cellAttr => cellAttr
+							.BgColor("white")
+							.PenColor(colors.Cyan)
+						)
+						.WithNodeAttributes(nodeAttr => nodeAttr
+							.Color("skyblue")
+						)
+						// Table: Types
+						.AddHtml("t_builders", html => html
+							.WithAttributes(htmlAttr => htmlAttr
+								.Border(1)
+								.CellBorder(1)
+								.CellSpacing(0)
+								.CellPadding(5)
+								.Color(colors.Cyan)
+							)
+							.WithNodeAttributes(htmlNodeAttr => htmlNodeAttr.Shape(Shape.Plain))
+							// Row: ClusterBuilder
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "ClusterBuilder", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
-							.AddCell("", "DotGenerator", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
+							// Row: EdgeBuilder
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "EdgeBuilder", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
+								)
+							)
+							// Row: GraphBuilder
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "GraphBuilder", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
+								)
+							)
+							// Row: NodeBuilder
+							.AddRow(row => row
+								.AddCell("", "class", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Left)
+									)
+								)
+								.AddCell("", "NodeBuilder", cell => cell
+									.WithAttributes(cellAttr => cellAttr
+										.ColSpan(1)
+										.Align(HtmlAlign.Right)
+									)
 								)
 							)
 						)
-						// Row: GraphFormatter
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
-								)
+						// Cluster: Builders.Attributes
+						// Cluster: Types
+						.AddCluster(id: "gw_builders_attr", label: "Attributes", configure: cluster3 => cluster3
+							.WithAttributes(cellAttr => cellAttr
+								.BgColor("white")
+								.PenColor(colors.Cyan)
 							)
-							.AddCell("", "GraphFormatter", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
+							.WithNodeAttributes(nodeAttr => nodeAttr
+								.Color("skyblue")
+							)
+							// Table: Types
+							.AddHtml("t_builders_attr", html => html
+								.WithAttributes(htmlAttr => htmlAttr
+									.Border(1)
+									.CellBorder(1)
+									.CellSpacing(0)
+									.CellPadding(5)
+									.Color(colors.Cyan)
+								)
+								.WithNodeAttributes(node => node.Shape(Shape.Plain))
+								// Row: ClusterAttributeBuilder
+								.AddRow(row => row
+									.AddCell("", "class", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Left)
+										)
+									)
+									.AddCell("", "ClusterAttributeBuilder", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Right)
+										)
+									)
+								)
+								// Row: EdgeAttributeBuilder
+								.AddRow(row => row
+									.AddCell("", "class", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Left)
+										)
+									)
+									.AddCell("", "EdgeAttributeBuilder", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Right)
+										)
+									)
+								)
+								// Row: GraphAttributeBuilder
+								.AddRow(row => row
+									.AddCell("", "class", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Left)
+										)
+									)
+									.AddCell("", "GraphAttributeBuilder", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Right)
+										)
+									)
+								)
+								// Row: NodeAttributeBuilder
+								.AddRow(row => row
+									.AddCell("", "class", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Left)
+										)
+									)
+									.AddCell("", "NodeAttributeBuilder", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Right)
+										)
+									)
 								)
 							)
 						)
-						// Row: Helpers
-						.AddRow(row => row
-							.AddCell("", "class", cell => cell
-								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Left)
+						// Cluster: Builders Html
+						.AddCluster(id: "gw_builders_html", label: "Html", configure: cluster4 => cluster4
+							.WithAttributes(cellAttr => cellAttr
+								.BgColor("white")
+								.PenColor(colors.Cyan)
+							)
+							.WithNodeAttributes(nodeAttr => nodeAttr
+								.Color("skyblue")
+							)
+							// Table: Html
+							.AddHtml("t_builders_html", html => html
+								.WithAttributes(htmlAttr => htmlAttr
+									.Border(1)
+									.CellBorder(1)
+									.CellSpacing(0)
+									.CellPadding(5)
+									.Color(colors.Cyan)
+								)
+								.WithNodeAttributes(node => node.Shape(Shape.Plain))
+								// Row: HtmlCellBuilder
+								.AddRow(row => row
+									.AddCell("", "class", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Left)
+										)
+									)
+									.AddCell("", "HtmlCellBuilder", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Right)
+										)
+									)
+								)
+								// Row: HtmlRowBuilder
+								.AddRow(row => row
+									.AddCell("", "class", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Left)
+										)
+									)
+									.AddCell("", "HtmlRowBuilder", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Right)
+										)
+									)
+								)
+								// Row: HtmlTableBuilder
+								.AddRow(row => row
+									.AddCell("", "class", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Left)
+										)
+									)
+									.AddCell("", "HtmlTableBuilder", cell => cell
+										.WithAttributes(cellAttr => cellAttr
+											.ColSpan(1)
+											.Align(HtmlAlign.Right)
+										)
+									)
 								)
 							)
-							.AddCell("", "Helpers", cell => cell
+							// Cluster: Builders.Html.Attributes
+							.AddCluster("gv_builders_html_attr", "Attributes", configure: cluster5 => cluster5
 								.WithAttributes(cellAttr => cellAttr
-									.ColSpan(1)
-									.Align(HtmlAlign.Right)
+									.BgColor("white")
+									.PenColor(colors.Cyan)
+								)
+								.WithNodeAttributes(nodeAttr => nodeAttr
+									.Color("skyblue")
+								)
+								// Table: Builders.Html.Attributes
+								.AddHtml("t_builders_html_attr", html => html
+									.WithAttributes(htmlAttr => htmlAttr
+										.Border(1)
+										.CellBorder(1)
+										.CellSpacing(0)
+										.CellPadding(5)
+										.Color(colors.Cyan)
+									)
+									.WithNodeAttributes(htmlNodeAttr => htmlNodeAttr.Shape(Shape.Plain))
+									// Row: HtmlCellAttributesBuilder
+									.AddRow(row => row
+										.AddCell("", "class", cell => cell
+											.WithAttributes(cellAttr => cellAttr
+												.ColSpan(1)
+												.Align(HtmlAlign.Left)
+											)
+										)
+										.AddCell("", "HtmlCellAttributesBuilder", cell => cell
+											.WithAttributes(cellAttr => cellAttr
+												.ColSpan(1)
+												.Align(HtmlAlign.Right)
+											)
+										)
+									)
+									// Row: HtmlTableAttributesBuilder
+									.AddRow(row => row
+										.AddCell("", "class", cell => cell
+											.WithAttributes(cellAttr => cellAttr
+												.ColSpan(1)
+												.Align(HtmlAlign.Left)
+											)
+										)
+										.AddCell("", "HtmlTableAttributesBuilder", cell => cell
+											.WithAttributes(cellAttr => cellAttr
+												.ColSpan(1)
+												.Align(HtmlAlign.Right)
+											)
+										)
+									)
 								)
 							)
 						)
@@ -348,8 +766,8 @@ public partial class Graphs
 					// Cluster: Types
 					.AddCluster(id: "gv_types", label: "Types", configure: cluster2 => cluster2
 						.WithAttributes(cellAttr => cellAttr
-							.BgColor(colors.Transparent)
-							.PenColor(colors.Blue)
+							.BgColor("white")
+							.PenColor(colors.Cyan)
 						)
 						.WithNodeAttributes(nodeAttr => nodeAttr
 							.Color("skyblue")
@@ -361,7 +779,7 @@ public partial class Graphs
 								.CellBorder(1)
 								.CellSpacing(0)
 								.CellPadding(5)
-								.Color(colors.Plum)
+								.Color(colors.Cyan)
 							)
 							.WithNodeAttributes(htmlNodeAttr => htmlNodeAttr.Shape(Shape.Plain))
 							// Row: Cluster
@@ -433,7 +851,7 @@ public partial class Graphs
 								.CellBorder(1)
 								.CellSpacing(0)
 								.CellPadding(5)
-								.Color(colors.Plum)
+								.Color(colors.Cyan)
 							)
 							.WithNodeAttributes(htmlNodeAttr => htmlNodeAttr.Shape(Shape.Plain))
 							// Row: Title
@@ -517,25 +935,6 @@ public partial class Graphs
 									.WithAttributes(cellAttr => cellAttr
 										.ColSpan(1)
 										.Align(HtmlAlign.Right)
-									)
-								)
-							)
-						)
-						.AddCluster("", "Test", configure: config => config
-							.WithNodeAttributes(nodeAttr => nodeAttr
-								.Shape(Shape.Plain)
-							)
-							.AddHtml("kek", html => html
-								.AddRow(row => row
-									.AddCell("WOAH", "HMM?", cell => cell
-										.WithAttributes(attr => attr
-											.Align(HtmlAlign.Right)
-										)
-									)
-									.AddCell("KE", "EH", cell => cell
-										.WithAttributes(attr => attr
-											.Align(HtmlAlign.Right)
-										)
 									)
 								)
 							)
