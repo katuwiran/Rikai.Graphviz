@@ -359,19 +359,30 @@ public class GraphFormatter
 
 	internal void FormatTable(int currentIndent, HtmlTable table)
 	{
-		string baseIndent = Helpers.Indent(currentIndent);
+		string baseIndent  = Helpers.Indent(currentIndent);
+		string innerIndent = Helpers.Indent(currentIndent+1);
 
-		AppendLine(baseIndent, $"{table.Id} [label=<");
-		Append(baseIndent, "<TABLE");
+		if (table.NodeAttributes.IsEmpty)
+		{
+			AppendLine(baseIndent, $"{table.Id} [label=<");
+		}
+		else
+		{
+			AppendLine(baseIndent, $"{table.Id} [");
+			FormatNodeAttributes(innerIndent, table.NodeAttributes);
+			AppendLine(innerIndent, "\"label\" = <");
+		}
+
+		Append(innerIndent, "<TABLE");
 		FormatTableAttributes(table.Attributes);
 		AppendLine(">");
 
 		foreach (HtmlRow row in table.Rows)
 		{
-			FormatRow(currentIndent + 1, row);
+			FormatRow(currentIndent + 2, row);
 		}
 
-		Append(baseIndent, "</TABLE>");
+		Append(innerIndent, "</TABLE>");
 		AppendLine(">];");
 	}
 
