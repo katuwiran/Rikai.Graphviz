@@ -1,9 +1,19 @@
 ﻿namespace Rikai.Graphviz.Samples;
 
-public partial class Program
+public class Program
 {
 	public static void Main()
 	{
-		Console.WriteLine(Meta);
+		Console.WriteLine();
+		// Console.WriteLine(Graphs.Fluent());
+		// Console.WriteLine();
+		// Console.WriteLine(Graphs.Syntax());
+		// Console.WriteLine();
+		Console.WriteLine(Graphs.LibraryStructure());
+		// Console.WriteLine();
+		// Console.WriteLine(Graphs.Meta);
+		// Console.WriteLine();
+		// Console.WriteLine(Graphs.ReadMe());
+		// Console.WriteLine();
 	}
 }
