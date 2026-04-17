@@ -9,7 +9,7 @@ public class HtmlTableAttributeBuilder
 	// @formatter:off
     public HtmlTableAttributeBuilder Align(HtmlAlign value) { _attr.Align       = value; return this; }
     public HtmlTableAttributeBuilder BgColor(string value)  { _attr.BgColor     = value; return this; }
-    public HtmlTableAttributeBuilder TableBorder(int value) { _attr.Border      = value; return this; }
+    public HtmlTableAttributeBuilder Border(int value)      { _attr.Border      = value; return this; }
     public HtmlTableAttributeBuilder CellBorder(int value)  { _attr.CellBorder  = value; return this; }
     public HtmlTableAttributeBuilder CellPadding(int value) { _attr.CellPadding = value; return this; }
     public HtmlTableAttributeBuilder CellSpacing(int value) { _attr.CellSpacing = value; return this; }
