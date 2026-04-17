@@ -94,19 +94,18 @@ public class GraphBuilder
 	// node creator fully with fluent api
 	public GraphBuilder AddNode(string id, Action<NodeBuilder> configure)
 	{
-		NodeBuilder node;
-		node = new NodeBuilder(id);
-		configure(node);
-
+		var builder = new NodeBuilder(id);
+		configure(builder);
+		_graph.Nodes.Add(builder.Build());
 		return this;
 	}
 
 	// node creator fully with fluent api
 	public GraphBuilder AddNode(string id, string label, Action<NodeBuilder> configure)
 	{
-		NodeBuilder node;
-		node = new NodeBuilder(id, label);
-		configure(node);
+		var builder = new NodeBuilder(id, label);
+		configure(builder);
+		_graph.Nodes.Add(builder.Build());
 		return this;
 	}
 
@@ -123,9 +122,17 @@ public class GraphBuilder
 	}
 
 	// adding Edges, refer to Types/Collections/GraphEdges for details
-	public GraphBuilder AddEdge(Node from, Node to)
+	public GraphBuilder AddEdge(Node from, Node to, Action<EdgeAttributeBuilder>? configure = null)
 	{
-		_graph.Edges.Add(new Edge(from, to));
+		Edge edge = new(from, to);
+		if (configure is not null)
+		{
+			var builder = new EdgeAttributeBuilder(edge.Attributes);
+			configure(builder);
+		}
+
+		_graph.Edges.Add(edge);
+
 		return this;
 	}
 
