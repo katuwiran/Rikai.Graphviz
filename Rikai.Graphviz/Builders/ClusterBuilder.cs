@@ -215,6 +215,10 @@ public class ClusterBuilder
 
 	public ClusterBuilder AddHtml(string id, Action<HtmlTableBuilder> configure)
 	{
+		if (String.IsNullOrWhiteSpace(id))
+		{
+			throw new ArgumentNullException(nameof(id), "Html Tables must have an id.");
+		}
 		var builder = new HtmlTableBuilder(id);
 		configure(builder);
 
