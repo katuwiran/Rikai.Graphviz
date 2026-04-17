@@ -136,51 +136,114 @@ public class GraphBuilder
 		return this;
 	}
 
-	public GraphBuilder AddEdge(Node from, IEnumerable<Node> to)
+	public GraphBuilder AddEdge(Node from, IEnumerable<Node> to, Action<EdgeAttributeBuilder>? configure = null)
 	{
-		_graph.Edges.Add(new Edge(from, to));
-		return this;
-	}
+		Edge edge = new(from, to);
+		if (configure is not null)
+		{
+			var builder = new EdgeAttributeBuilder(edge.Attributes);
+			configure(builder);
+		}
 
-	public GraphBuilder AddEdge(IEnumerable<Node> from, IEnumerable<Node> to)
-	{
-		_graph.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public GraphBuilder AddEdge(IEnumerable<Node> from, Node to)
-	{
-		_graph.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public GraphBuilder AddEdge(string from, string to)
-	{
-		_graph.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public GraphBuilder AddEdge(string from, IEnumerable<string> to)
-	{
-		_graph.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public GraphBuilder AddEdge(IEnumerable<string> from, IEnumerable<string> to)
-	{
-		_graph.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public GraphBuilder AddEdge(IEnumerable<string> from, string to)
-	{
-		_graph.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public GraphBuilder AddEdge(Edge edge)
-	{
 		_graph.Edges.Add(edge);
+		return this;
+	}
+
+	public GraphBuilder AddEdge(IEnumerable<Node> from, IEnumerable<Node> to, Action<EdgeAttributeBuilder>? configure = null)
+	{
+		Edge edge = new(from, to);
+		if (configure is not null)
+		{
+			var builder = new EdgeAttributeBuilder(edge.Attributes);
+			configure(builder);
+		}
+
+		_graph.Edges.Add(edge);
+		return this;
+	}
+
+	public GraphBuilder AddEdge(IEnumerable<Node> from, Node to, Action<EdgeAttributeBuilder>? configure = null)
+	{
+		Edge edge = new(from, to);
+		if (configure is not null)
+		{
+			var builder = new EdgeAttributeBuilder(edge.Attributes);
+			configure(builder);
+		}
+
+		_graph.Edges.Add(edge);
+		return this;
+	}
+
+	public GraphBuilder AddEdge(string from, string to, Action<EdgeAttributeBuilder>? configure = null)
+	{
+		Edge edge = new(from, to);
+		if (configure is not null)
+		{
+			var builder = new EdgeAttributeBuilder(edge.Attributes);
+			configure(builder);
+		}
+
+		_graph.Edges.Add(edge);
+		return this;
+	}
+
+	public GraphBuilder AddEdge(string from, IEnumerable<string> to, Action<EdgeAttributeBuilder>? configure = null)
+	{
+		Edge edge = new(from, to);
+		if (configure is not null)
+		{
+			var builder = new EdgeAttributeBuilder(edge.Attributes);
+			configure(builder);
+		}
+
+		_graph.Edges.Add(edge);
+		return this;
+	}
+
+	public GraphBuilder AddEdge(IEnumerable<string> from, IEnumerable<string> to, Action<EdgeAttributeBuilder>? configure = null)
+	{
+		Edge edge = new(from, to);
+		if (configure is not null)
+		{
+			var builder = new EdgeAttributeBuilder(edge.Attributes);
+			configure(builder);
+		}
+
+		_graph.Edges.Add(edge);
+		return this;
+	}
+
+	public GraphBuilder AddEdge(IEnumerable<string> from, string to, Action<EdgeAttributeBuilder>? configure = null)
+	{
+		Edge edge = new(from, to);
+		if (configure is not null)
+		{
+			var builder = new EdgeAttributeBuilder(edge.Attributes);
+			configure(builder);
+		}
+
+		_graph.Edges.Add(edge);
+		return this;
+	}
+
+	public GraphBuilder AddEdge(Edge edge, Action<EdgeAttributeBuilder>? configure = null)
+	{
+		if (configure is not null)
+		{
+			var builder = new EdgeAttributeBuilder(edge.Attributes);
+			configure(builder);
+		}
+
+		_graph.Edges.Add(edge);
+		return this;
+	}
+
+	public GraphBuilder AddEdge(Action<EdgeBuilder> configure)
+	{
+		var builder = new EdgeBuilder();
+		configure(builder);
+		_graph.Edges.Add(builder.Build());
 		return this;
 	}
 
