@@ -4,5 +4,5 @@ public enum LabelLocation
 {
 	Top,
 	Centered,
-	Bottom,
+	Bottom
 }

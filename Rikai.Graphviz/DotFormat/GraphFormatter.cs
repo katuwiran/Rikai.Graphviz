@@ -17,10 +17,9 @@ public class GraphFormatter
 		_edgeSymbol = generator.EdgeSymbol;
 	}
 
-
 	public void FormatGraphAttributes()
 	{
-		var attr = _graph.Attributes;
+		GraphAttributes attr = _graph.Attributes;
 
 		if (attr.IsEmpty) return;
 
@@ -41,9 +40,12 @@ public class GraphFormatter
 
 	public void FormatGraphNodeAttributes()
 	{
-		var attr = _graph.Nodes.Attributes;
+		NodeAttributes attr = _graph.Nodes.Attributes;
 
-		if (attr.IsEmpty) return;
+		if (attr.IsEmpty)
+		{
+			return;
+		}
 
 		string baseIndent  = Helpers.Indent(_indent);
 		string innerIndent = Helpers.Indent(_indent + 1);
@@ -55,9 +57,12 @@ public class GraphFormatter
 
 	public void FormatGraphEdgeAttributes()
 	{
-		var attr = _graph.Edges.Attributes;
+		EdgeAttributes attr = _graph.Edges.Attributes;
 
-		if (attr.IsEmpty) return;
+		if (attr.IsEmpty)
+		{
+			return;
+		}
 
 		string baseIndent  = Helpers.Indent(_indent);
 		string innerIndent = Helpers.Indent(_indent + 1);
@@ -69,14 +74,24 @@ public class GraphFormatter
 
 	public void FormatGraphClusters()
 	{
-		var clusters = _graph.Clusters.Collection;
+		List<Cluster> clusters = _graph.Clusters.Collection;
 
-		if (!clusters.Any()) return;
+		if (!clusters.Any())
+		{
+			return;
+		}
 
-		foreach (var cluster in clusters)
+		foreach (Cluster cluster in clusters)
 		{
 			FormatCluster(_indent, cluster);
 		}
+	}
+
+	public void FormatGraphTables()
+	{
+		List<HtmlTable> tables = _graph.Tables;
+
+		FormatTables(_indent, tables);
 	}
 
 	public void FormatCluster(int currentIndent, Cluster cluster)
@@ -84,7 +99,7 @@ public class GraphFormatter
 		string baseIndent  = Helpers.Indent(currentIndent);
 		string innerIndent = Helpers.Indent(currentIndent + 1);
 
-		var attr = cluster.Attributes;
+		ClusterAttributes attr = cluster.Attributes;
 
 		string clusterHeader;
 
@@ -113,19 +128,23 @@ public class GraphFormatter
 		FormatClusterNodeAttributes(currentIndent, cluster.Nodes.Attributes);
 		FormatClusterNodes(currentIndent, cluster.Nodes.Collection);
 		FormatClusterEdges(currentIndent, cluster.Edges.Collection);
+		FormatTables(currentIndent, cluster.HtmlTables);
 		FormatNestedClusters(currentIndent + 1, cluster.Clusters.Collection);
 		_sb.AppendLine(baseIndent          + "}");
 	}
 
 	public void FormatNestedClusters(int currentIndent, List<Cluster> clusters)
 	{
-		if (!clusters.Any()) return;
+		if (!clusters.Any())
+		{
+			return;
+		}
 
 		// by default, graphviz renders first the last defined subgraph
 		// for now, by default the lib will reverse it first
 		clusters.Reverse();
 
-		foreach (var cluster in clusters)
+		foreach (Cluster cluster in clusters)
 		{
 			FormatCluster(currentIndent, cluster);
 		}
@@ -133,14 +152,17 @@ public class GraphFormatter
 
 	public void FormatClusterEdges(int currentIndent, List<Edge> edges)
 	{
-		if (!edges.Any()) return;
+		if (!edges.Any())
+		{
+			return;
+		}
 
 		int indentLevel = currentIndent;
 
 		string baseIndent  = Helpers.Indent(indentLevel + 1);
 		string innerIndent = Helpers.Indent(indentLevel + 2);
 
-		foreach (var edge in edges)
+		foreach (Edge edge in edges)
 		{
 			FormatEdge(baseIndent, innerIndent, edge);
 		}
@@ -148,7 +170,10 @@ public class GraphFormatter
 
 	public void FormatClusterNodes(int currentIndent, List<Node> nodes)
 	{
-		if (!nodes.Any()) return;
+		if (!nodes.Any())
+		{
+			return;
+		}
 
 		int indentLevel = currentIndent;
 
@@ -158,7 +183,7 @@ public class GraphFormatter
 		// cluster nodes reversed to appear as they are inputted
 		nodes.Reverse();
 
-		foreach (var node in nodes)
+		foreach (Node node in nodes)
 		{
 			FormatNode(baseIndent, innerIndent, node);
 		}
@@ -166,7 +191,10 @@ public class GraphFormatter
 
 	public void FormatClusterNodeAttributes(int currentIndent, NodeAttributes attr)
 	{
-		if (attr.IsEmpty) return;
+		if (attr.IsEmpty)
+		{
+			return;
+		}
 
 		int indentLevel = currentIndent;
 
@@ -180,7 +208,10 @@ public class GraphFormatter
 
 	public void FormatClusterEdgeAttributes(int currentIndent, EdgeAttributes attr)
 	{
-		if (attr.IsEmpty) return;
+		if (attr.IsEmpty)
+		{
+			return;
+		}
 
 		int indentLevel = currentIndent;
 
@@ -195,7 +226,10 @@ public class GraphFormatter
 
 	public void FormatClusterAttributes(string innerIndent, ClusterAttributes attr)
 	{
-		if (attr.IsEmpty) return;
+		if (attr.IsEmpty)
+		{
+			return;
+		}
 
 		AppendLine(innerIndent, Helpers.FormatAttribute("cluster",   attr.IsCluster).ToLower());
 		AppendLine(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
@@ -213,14 +247,17 @@ public class GraphFormatter
 	{
 		// todo include an OR statement, where nodes not in edge definitions are included either way
 		// var nodeWithAttributes = nodes.Nodes.Where(n => !n.Attributes.IsEmpty);
-		var nodeWithAttributes = _graph.Nodes.Collection;
+		List<Node> nodeWithAttributes = _graph.Nodes.Collection;
 
-		if (!nodeWithAttributes.Any()) return;
+		if (!nodeWithAttributes.Any())
+		{
+			return;
+		}
 
 		string baseIndent  = Helpers.Indent(_indent);
 		string innerIndent = Helpers.Indent(_indent + 1);
 
-		foreach (var node in nodeWithAttributes)
+		foreach (Node node in nodeWithAttributes)
 		{
 			FormatNode(baseIndent, innerIndent, node);
 		}
@@ -228,14 +265,17 @@ public class GraphFormatter
 
 	public void FormatGraphEdges()
 	{
-		var edges = _graph.Edges.Collection;
+		List<Edge> edges = _graph.Edges.Collection;
 
-		if (!edges.Any()) return;
+		if (!edges.Any())
+		{
+			return;
+		}
 
 		string baseIndent  = Helpers.Indent(_indent);
 		string innerIndent = Helpers.Indent(_indent + 1);
 
-		foreach (var edge in edges)
+		foreach (Edge edge in edges)
 		{
 			FormatEdge(baseIndent, innerIndent, edge);
 		}
@@ -299,7 +339,7 @@ public class GraphFormatter
 		{
 			StringBuilder result = new();
 
-			foreach (var id in ids)
+			foreach (string id in ids)
 			{
 				result.Append($"\"{id}\" ");
 			}
@@ -308,8 +348,118 @@ public class GraphFormatter
 		}
 	}
 
+	internal void FormatTables(int currentIndent, List<HtmlTable> tables)
+	{
+		foreach (HtmlTable table in tables)
+		{
+			FormatTable(currentIndent, table);
+		}
+	}
+
+	internal void FormatTable(int currentIndent, HtmlTable table)
+	{
+		string baseIndent = Helpers.Indent(currentIndent);
+
+		AppendLine(baseIndent, $"{table.Id} [label=<");
+		Append(baseIndent, "<TABLE");
+		FormatTableAttributes(table.Attributes);
+		AppendLine(">");
+
+		foreach (HtmlRow row in table.Rows)
+		{
+			FormatRow(currentIndent + 1, row);
+		}
+
+		Append(baseIndent, "</TABLE>");
+		AppendLine(">];");
+	}
+
+	internal void FormatRow(int currentIndent, HtmlRow row)
+	{
+		string baseIndent = Helpers.Indent(currentIndent);
+
+		AppendLine(baseIndent, "<TR>");
+
+		foreach (HtmlCell cell in row.Cells)
+		{
+			FormatCell(currentIndent + 1, cell);
+		}
+
+		AppendLine(baseIndent, "</TR>");
+	}
+
+	internal void FormatCell(int currentIndent, HtmlCell cell)
+	{
+		string baseIndent  = Helpers.Indent(currentIndent);
+		string innerIndent = Helpers.Indent(currentIndent + 1);
+
+		Append(baseIndent, "<TD");
+		FormatCellAttributes(innerIndent, cell.Attributes);
+		Append(">");
+		Append($"\"{cell.Text}\"");
+		AppendLine("</TD>");
+	}
+
+	internal void FormatTableAttributes(HtmlTableAttributes attr)
+	{
+		Append(Helpers.FormatHtmlAttribute("ALIGN",       attr.Align));
+		Append(Helpers.FormatHtmlAttribute("BGCOLOR",     attr.BgColor));
+		Append(Helpers.FormatHtmlAttribute("BORDER",      attr.Border));
+		Append(Helpers.FormatHtmlAttribute("CELLBORDER",  attr.CellBorder));
+		Append(Helpers.FormatHtmlAttribute("CELLPADDING", attr.CellPadding));
+		Append(Helpers.FormatHtmlAttribute("CELLSPACING", attr.CellSpacing));
+		Append(Helpers.FormatHtmlAttribute("COLOR",       attr.Color));
+		Append(Helpers.FormatHtmlAttribute("PORT",        attr.Port));
+		Append(Helpers.FormatHtmlAttribute("STYLE",       attr.Style));
+	}
+
+	internal void FormatCellAttributes(string currentIndent, HtmlCellAttributes attr)
+	{
+		Append(Helpers.FormatHtmlAttribute("ALIGN",       attr.Align));
+		Append(Helpers.FormatHtmlAttribute("BGCOLOR",     attr.BgColor));
+		Append(Helpers.FormatHtmlAttribute("BORDER",      attr.Border));
+		Append(Helpers.FormatHtmlAttribute("CELLBORDER",  attr.CellBorder));
+		Append(Helpers.FormatHtmlAttribute("CELLPADDING", attr.CellPadding));
+		Append(Helpers.FormatHtmlAttribute("CELLSPACING", attr.CellSpacing));
+		Append(Helpers.FormatHtmlAttribute("COLOR",       attr.Color));
+		Append(Helpers.FormatHtmlAttribute("COLSPAN",     attr.ColSpan));
+		Append(Helpers.FormatHtmlAttribute("HEIGHT",      attr.Height));
+		Append(Helpers.FormatHtmlAttribute("PORT",        attr.Port));
+		Append(Helpers.FormatHtmlAttribute("ROWSPAN",     attr.RowSpan));
+		Append(Helpers.FormatHtmlAttribute("STYLE",       attr.Style));
+		Append(Helpers.FormatHtmlAttribute("WIDTH",       attr.Width));
+	}
+
+	internal void FormatHtmlAttribute()
+	{
+	}
+
 	// This local function handles the concatenation, appending, AND empty checks
-	void Append(string innerIndent, string formattedAttr)
+	private void AppendLine(string indent, string? formattedAttr)
+	{
+		if (!string.IsNullOrWhiteSpace(formattedAttr))
+		{
+			_sb.Append($"{indent}{formattedAttr}\n");
+		}
+	}
+
+	private void AppendLine(string? formattedAttr)
+	{
+		if (!string.IsNullOrWhiteSpace(formattedAttr))
+		{
+			_sb.Append($"{formattedAttr}\n");
+		}
+	}
+
+	private void Append(string? formattedAttr)
+	{
+		if (!string.IsNullOrWhiteSpace(formattedAttr))
+		{
+			_sb.Append($"{formattedAttr}");
+		}
+	}
+
+	private void Append(string indent, string? formattedAttr)
 	{
 		if (!string.IsNullOrWhiteSpace(formattedAttr))
 		{

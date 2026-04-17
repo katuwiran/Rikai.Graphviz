@@ -3,7 +3,7 @@ namespace Rikai.Graphviz;
 public class GraphEdges
 {
 	public   EdgeAttributes Attributes { get; set; }  = new();
-	public   List<Edge>     Collection      { get; init; } = new();
+	public   List<Edge>     Collection { get; init; } = new();
 	internal GraphNodes     Nodes; // constructor DI
 
 	public GraphEdges(Graph graph)
@@ -23,7 +23,7 @@ public class GraphEdges
 	public void AddRange(IEnumerable<Edge> edges)
 	{
 		Collection.AddRange(edges);
-		foreach (var edge in edges)
+		foreach (Edge edge in edges)
 		{
 			Nodes.AddNodesToCollectionIfNotExists(edge.FromNodes);
 			Nodes.AddNodesToCollectionIfNotExists(edge.ToNodes);

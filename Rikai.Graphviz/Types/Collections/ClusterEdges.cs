@@ -8,7 +8,7 @@ public class ClusterEdges
 
 	public ClusterEdges(Cluster cluster)
 	{
-		Nodes      = cluster.Nodes;
+		Nodes = cluster.Nodes;
 	}
 
 	// Add one edge
@@ -23,7 +23,7 @@ public class ClusterEdges
 	public void AddRange(IEnumerable<Edge> edges)
 	{
 		Collection.AddRange(edges);
-		foreach (var edge in edges)
+		foreach (Edge edge in edges)
 		{
 			Nodes.AddNodesToCollectionIfNotExists(edge.FromNodes);
 			Nodes.AddNodesToCollectionIfNotExists(edge.ToNodes);

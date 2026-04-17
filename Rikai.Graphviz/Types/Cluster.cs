@@ -14,13 +14,13 @@ public class Cluster
 	public Cluster(string id)
 	{
 		Id    = id;
-		Edges = new(this);
+		Edges = new ClusterEdges(this);
 	}
 
 	public Cluster(string id, string label)
 	{
 		Id    = id;
 		Label = label;
-		Edges = new(this);
+		Edges = new ClusterEdges(this);
 	}
 }

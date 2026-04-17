@@ -8,28 +8,28 @@ public partial class Graphs
 		Graph graph = new() { Type = GraphType.Directed };
 
 		// Create new attributes for the graph
-		graph.Attributes = new GraphAttributes()
+		graph.Attributes = new GraphAttributes
 		{
 			FontName     = "Test",
 			FontColor    = "cccccc",
 			RankDir      = RankDir.BT,
-			LayoutEngine = LayoutEngine.Circo,
+			LayoutEngine = LayoutEngine.Circo
 		};
 
 		// Create new attributes for all graph nodes
-		graph.Nodes.Attributes = new NodeAttributes()
+		graph.Nodes.Attributes = new NodeAttributes
 		{
 			FontName  = "Test2",
 			FontColor = "cccccc",
 			Shape     = Shape.Circle,
-			FillColor = "cccccc",
+			FillColor = "cccccc"
 		};
 
 		// Create new attributes for all graph edges
-		graph.Edges.Attributes = new EdgeAttributes()
+		graph.Edges.Attributes = new EdgeAttributes
 		{
 			ArrowHead = ArrowType.Inv,
-			ArrowTail = ArrowType.Tee,
+			ArrowTail = ArrowType.Tee
 		};
 
 		// You can define nodes like this
@@ -50,11 +50,12 @@ public partial class Graphs
 		// this is closest to vanilla graphviz's syntax for fast iteration
 		// todo: node to labels are not yet allowed ;)
 		graph.Edges.AddRange([
-			new("A", "B"),
-			// new(node, "C"),
-			new(n1, n2),
-			new("A", ["C", "D", "E"]),
-		]);
+				new Edge("A", "B"),
+				// new(node, "C"),
+				new Edge(n1,  n2),
+				new Edge("A", ["C", "D", "E"])
+			]
+		);
 
 		// accessibility methods
 		// graph.ToString() converts the graph to a dot string.

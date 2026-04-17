@@ -16,7 +16,8 @@ public partial class Graphs
 				.FontName("Libertinus Sans")
 				.FontColor("cccccc")
 				.RankDir(RankDir.LR)
-				.LayoutEngine(LayoutEngine.Dot))
+				.LayoutEngine(LayoutEngine.Dot)
+			)
 
 			// define the Graph Node attributes
 			// this will be `node [attr=value]`
@@ -24,12 +25,14 @@ public partial class Graphs
 				.FontName("Libertinus Sans")
 				.FontColor("orange")
 				.Shape(Shape.Rectangle)
-				.FillColor("pink"))
+				.FillColor("pink")
+			)
 
 			// define the Graph Node attributes
 			// this will be `node [attr=value]`
 			.WithEdgeAttributes(a => a
-				.Color("green"))
+				.Color("green")
+			)
 
 			// builds the graph object
 			.Build();
@@ -49,14 +52,18 @@ public partial class Graphs
 			.AddNode(new NodeBuilder("another node")
 				.WithAttributes(a => a
 					.Color("pink")
-					.Shape(Shape.Septagon))
-				.Build())
+					.Shape(Shape.Septagon)
+				)
+				.Build()
+			)
 
 			// or alternatively, using the Action<T> syntax
 			.AddNode("real node", c => c
 				.WithAttributes(a => a
 					.Color("pink")
-					.Shape(Shape.Septagon)))
+					.Shape(Shape.Septagon)
+				)
+			)
 
 			// Adding multiple nodes at once
 			.AddNodes([n1, n2, solo])
@@ -68,15 +75,17 @@ public partial class Graphs
 
 			// Multiple edges at once
 			.AddEdges([
-				new(from: ["B", "C"], to: ["D", "E", "F"]),
-				new("C", "F")
-			])
+					new Edge(from: ["B", "C"], to: ["D", "E", "F"]),
+					new Edge("C",              "F")
+				]
+			)
 
 			// Adding an edge using the fluent builder
 			.AddEdge(new EdgeBuilder()
 				.From("From this")
 				.To("To that")
-				.Build())
+				.Build()
+			)
 
 			// Adding a fluent edge with attributes
 			.AddEdge(new EdgeBuilder()
@@ -85,8 +94,10 @@ public partial class Graphs
 				.WithAttributes(a => a
 					.ArrowHead(ArrowType.Vee)
 					.Color("pink")
-					.Label("test"))
-				.Build())
+					.Label("test")
+				)
+				.Build()
+			)
 			.Build();
 
 		return continuation;

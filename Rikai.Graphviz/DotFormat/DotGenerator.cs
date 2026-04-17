@@ -28,6 +28,7 @@ public partial class DotGenerator
 		formatter.FormatGraphNodes();
 		formatter.FormatGraphEdges();
 		formatter.FormatGraphClusters();
+		formatter.FormatGraphTables();
 		Sb.AppendLine("}");
 
 		return Sb.ToString();
@@ -47,6 +48,6 @@ public partial class DotGenerator
 
 	public void Print()
 	{
-		Console.WriteLine(this.ToString());
+		Console.WriteLine(ToString());
 	}
 }

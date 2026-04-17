@@ -4,7 +4,7 @@ namespace Rikai.Graphviz.DotFormat;
 
 internal static class Helpers
 {
-	static string _indentChar = "    ";
+	private static string _indentChar = "    ";
 
 	internal static string FormatAttribute<T>(string name, T? value)
 	{
@@ -20,7 +20,7 @@ internal static class Helpers
 	{
 		return $"\"{name}\" = \"{value}\"";
 	}
-	
+
 	// html attributes
 	internal static string FormatHtmlAttribute<T>(string name, T? value)
 	{

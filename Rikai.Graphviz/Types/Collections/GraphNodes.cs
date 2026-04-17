@@ -38,10 +38,7 @@ public class GraphNodes
 	/// <returns></returns>
 	public void AddRange(IEnumerable<Node> nodes)
 	{
-		foreach (var node in nodes)
-		{
-			AddNodeToCollectionIfNotExists(node);
-		}
+		foreach (Node node in nodes) AddNodeToCollectionIfNotExists(node);
 	}
 
 	/// <summary>
@@ -62,7 +59,7 @@ public class GraphNodes
 	/// <returns></returns>
 	public void AddIdRange(IEnumerable<string> ids)
 	{
-		foreach (var label in ids)
+		foreach (string label in ids)
 		{
 			var node = new Node(label);
 			AddNodeToCollectionIfNotExists(node);
@@ -75,9 +72,9 @@ public class GraphNodes
 	/// <param name="nodes"></param>
 	internal void AddNodesToCollectionIfNotExists(params Node[] nodes)
 	{
-		foreach (var node in nodes)
+		foreach (Node node in nodes)
 		{
-			var id = node.Id;
+			string id = node.Id;
 			if (!NodeIds.Contains(id))
 			{
 				Collection.Add(node);
@@ -92,7 +89,7 @@ public class GraphNodes
 	/// <param name="nodes"></param>
 	internal void AddNodesToCollectionIfNotExists(IEnumerable<Node> nodes)
 	{
-		foreach (var node in nodes)
+		foreach (Node node in nodes)
 		{
 			if (!Collection.Contains(node))
 			{
