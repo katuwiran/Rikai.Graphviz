@@ -350,6 +350,7 @@ public class GraphFormatter
 
 	internal void FormatTables(int currentIndent, List<HtmlTable> tables)
 	{
+		tables.Reverse(); // so that tables appear in the order they are defined.
 		foreach (HtmlTable table in tables)
 		{
 			FormatTable(currentIndent, table);
