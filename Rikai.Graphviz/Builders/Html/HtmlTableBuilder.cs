@@ -13,16 +13,16 @@ public class HtmlTableBuilder
 
 	public HtmlTableBuilder WithAttributes(HtmlTableAttributes attr)
 	{
-		_table.Attributes = attr;
+		_table.Attributes = attr with { };
 
 		return this;
 	}
-	
-	
+
+
 	public HtmlTableBuilder WithAttributes(HtmlTableAttributes attr, NodeAttributes nodeAttr)
 	{
-		_table.Attributes = attr;
-		_table.NodeAttributes = nodeAttr;
+		_table.Attributes     = attr with { };
+		_table.NodeAttributes = nodeAttr with { };
 
 		if (_isPlain)
 		{
