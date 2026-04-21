@@ -10,6 +10,7 @@ public record ClusterAttributes
 	public string?        Color           { get; set; }
 	public string?        FillColor       { get; set; }
 	public string?        BackgroundColor { get; set; }
+	public ClusterStyle?  Style           { get; set; }
 	public string?        PenColor        { get; set; }
 	public double?        PenWidth        { get; set; }
 

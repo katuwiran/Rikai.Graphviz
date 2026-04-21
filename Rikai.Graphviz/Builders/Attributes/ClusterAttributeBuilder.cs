@@ -15,6 +15,7 @@ public class ClusterAttributeBuilder
 	public ClusterAttributeBuilder Color(string value)           { _attr.Color           = value; return this; }
 	public ClusterAttributeBuilder FillColor(string value)       { _attr.FillColor       = value; return this; }
 	public ClusterAttributeBuilder BgColor(string value)         { _attr.BackgroundColor = value; return this; }
+	public ClusterAttributeBuilder Style(ClusterStyle value)     { _attr.Style           = value; return this; }
 	public ClusterAttributeBuilder PenColor(string value)        { _attr.PenColor        = value; return this; }
 	public ClusterAttributeBuilder PenWidth(double value)        { _attr.PenWidth        = value; return this; }
 	// @formatter:on

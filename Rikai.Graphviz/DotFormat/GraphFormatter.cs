@@ -238,6 +238,7 @@ public class GraphFormatter
 		AppendLine(innerIndent, Helpers.FormatAttribute("color",     attr.Color));
 		AppendLine(innerIndent, Helpers.FormatAttribute("fillcolor", attr.FillColor));
 		AppendLine(innerIndent, Helpers.FormatAttribute("bgcolor",   attr.BackgroundColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("style",     attr.Style).ToLower());
 		AppendLine(innerIndent, Helpers.FormatAttribute("pencolor",  attr.PenColor));
 		AppendLine(innerIndent, Helpers.FormatAttribute("penwidth",  attr.PenWidth));
 	}
