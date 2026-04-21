@@ -231,7 +231,6 @@ public class GraphFormatter
 			return;
 		}
 
-		AppendLine(innerIndent, Helpers.FormatAttribute("cluster",   attr.IsCluster).ToLower());
 		AppendLine(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
 		AppendLine(innerIndent, Helpers.FormatAttribute("labelloc",  attr.LabelLoc));
 		AppendLine(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));

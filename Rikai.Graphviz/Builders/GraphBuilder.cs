@@ -260,9 +260,9 @@ public class GraphBuilder
 		if (configure is not null)
 		{
 			configure(builder);
+			_graph.Clusters.Add(builder.Build());
 		}
 
-		_graph.Clusters.Add(builder.Build());
 		return this;
 	}
 

@@ -13,22 +13,18 @@ public class ClusterBuilder
 	{
 		_cluster   = new Cluster(id);
 		_isCluster = isCluster;
-		if (isCluster)
-		{
-			_cluster.Attributes.IsCluster = true;
-		}
+
+		_cluster.Attributes.IsCluster = _isCluster;
 	}
 
 	public ClusterBuilder(string id, string label, bool isCluster = false)
 	{
-		_cluster = new Cluster(id, label);
+		_cluster   = new Cluster(id, label);
+		_label     = label;
+		_isCluster = isCluster;
 
-		_label = label;
-
-		if (isCluster)
-		{
-			_cluster.Attributes.IsCluster = true;
-		}
+		_cluster.Attributes.Label     = _label;
+		_cluster.Attributes.IsCluster = _isCluster;
 	}
 
 	public ClusterBuilder(Cluster cluster)
@@ -207,9 +203,9 @@ public class ClusterBuilder
 		if (configure is not null)
 		{
 			configure(builder);
+			_cluster.Clusters.Add(builder.Build());
 		}
 
-		_cluster.Clusters.Add(builder.Build());
 		return this;
 	}
 
@@ -219,6 +215,7 @@ public class ClusterBuilder
 		{
 			throw new ArgumentNullException(nameof(id), "Html Tables must have an id.");
 		}
+
 		var builder = new HtmlTableBuilder(id);
 		configure(builder);
 
