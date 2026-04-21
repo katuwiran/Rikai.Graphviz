@@ -284,12 +284,15 @@ public class GraphFormatter
 
 	internal void FormatNodeAttributes(string innerIndent, NodeAttributes attr)
 	{
-		AppendLine(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
+		AppendLine(innerIndent, Helpers.FormatAttribute("shape",     attr.Shape).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("style",     attr.Style).ToLower());
 		AppendLine(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
 		AppendLine(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
 		AppendLine(innerIndent, Helpers.FormatAttribute("fillcolor", attr.FillColor));
 		AppendLine(innerIndent, Helpers.FormatAttribute("color",     attr.Color));
-		AppendLine(innerIndent, Helpers.FormatAttribute("shape",     attr.Shape).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
+		AppendLine(innerIndent, Helpers.FormatAttribute("width",     attr.Width));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontsize",  attr.FontSize));
 	}
 
 	internal void FormatEdgeAttributes(string innerIndent, EdgeAttributes attr)
@@ -360,7 +363,7 @@ public class GraphFormatter
 	internal void FormatTable(int currentIndent, HtmlTable table)
 	{
 		string baseIndent  = Helpers.Indent(currentIndent);
-		string innerIndent = Helpers.Indent(currentIndent+1);
+		string innerIndent = Helpers.Indent(currentIndent + 1);
 
 		if (table.NodeAttributes.IsEmpty)
 		{
