@@ -11,7 +11,7 @@ public class GraphBuilder
 	/// Instantiates an empty GraphBuilder. Requires to pass the <c>GraphType</c> in the signature.
 	/// </summary>
 	/// <param name="type"></param>
-	public GraphBuilder(GraphType type)
+	public GraphBuilder(GraphType type = GraphType.Directed)
 	{
 		_graph = new Graph { Type = type };
 	}
