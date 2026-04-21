@@ -26,6 +26,12 @@ public class HtmlRowBuilder
 		return this;
 	}
 
+	public HtmlRowBuilder AddCell(string id, string text, HtmlCellAttributes attributes)
+	{
+		_row.Cells.Add(new HtmlCell(id, text, attributes));
+		return this;
+	}
+
 	public HtmlRow Build()
 	{
 		return _row;

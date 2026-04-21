@@ -11,6 +11,28 @@ public class HtmlTableBuilder
 		_isPlain = isPlain;
 	}
 
+	public HtmlTableBuilder WithAttributes(HtmlTableAttributes attr)
+	{
+		_table.Attributes = attr;
+
+		return this;
+	}
+	
+	
+	public HtmlTableBuilder WithAttributes(HtmlTableAttributes attr, NodeAttributes nodeAttr)
+	{
+		_table.Attributes = attr;
+		_table.NodeAttributes = nodeAttr;
+
+		if (_isPlain)
+		{
+			_table.NodeAttributes.Shape = Shape.Plain;
+		}
+
+		return this;
+	}
+
+
 	public HtmlTableBuilder WithAttributes(Action<HtmlTableAttributeBuilder> configure)
 	{
 		var builder = new HtmlTableAttributeBuilder(_table.Attributes);
@@ -32,7 +54,7 @@ public class HtmlTableBuilder
 		{
 			_table.NodeAttributes.Shape = Shape.Plain;
 		}
-		
+
 		return this;
 	}
 

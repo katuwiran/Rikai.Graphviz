@@ -11,4 +11,11 @@ public class HtmlCell
 		Port = port;
 		Text = text;
 	}
+
+	public HtmlCell(string port, string text,  HtmlCellAttributes attributes)
+	{
+		Port = port;
+		Text = text;
+		Attributes = attributes;
+	}
 }

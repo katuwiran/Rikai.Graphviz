@@ -32,6 +32,23 @@ public class ClusterBuilder
 		_cluster = cluster;
 	}
 
+	public ClusterBuilder WithAttributes(ClusterAttributes attributes)
+	{
+		_cluster.Attributes = attributes with { };
+
+		if (_label is not null)
+		{
+			_cluster.Attributes.Label = _label;
+		}
+
+		if (_isCluster)
+		{
+			_cluster.Attributes.IsCluster = _isCluster;
+		}
+
+		return this;
+	}
+
 	public ClusterBuilder WithAttributes(Action<ClusterAttributeBuilder> configure)
 	{
 		var builder = new ClusterAttributeBuilder(_cluster.Attributes);
