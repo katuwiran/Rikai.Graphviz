@@ -3,16 +3,21 @@ namespace Rikai.Graphviz.Builders;
 public class HtmlTableBuilder
 {
 	private readonly HtmlTable _table;
+	private readonly bool      _isPlain;
 
-	public HtmlTableBuilder(string id)
+	public HtmlTableBuilder(string id, bool isPlain = true)
 	{
-		_table = new HtmlTable(id);
+		_table   = new HtmlTable(id, isPlain);
+		_isPlain = isPlain;
 	}
 
 	public HtmlTableBuilder WithAttributes(Action<HtmlTableAttributeBuilder> configure)
 	{
 		var builder = new HtmlTableAttributeBuilder(_table.Attributes);
 		configure(builder);
+
+		_table.Attributes = builder.Build();
+
 		return this;
 	}
 
@@ -20,6 +25,14 @@ public class HtmlTableBuilder
 	{
 		var builder = new NodeAttributeBuilder(_table.NodeAttributes);
 		configure(builder);
+
+		_table.NodeAttributes = builder.Build();
+
+		if (_isPlain)
+		{
+			_table.NodeAttributes.Shape = Shape.Plain;
+		}
+		
 		return this;
 	}
 
