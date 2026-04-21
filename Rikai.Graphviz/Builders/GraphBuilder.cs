@@ -253,7 +253,7 @@ public class GraphBuilder
 		return this;
 	}
 
-	public GraphBuilder AddCluster(string id, string label, bool isCluster = true, Action<ClusterBuilder>? configure = null)
+	public GraphBuilder AddCluster(string id, string label, Action<ClusterBuilder>? configure = null, bool isCluster = true)
 	{
 		var builder = new ClusterBuilder(id, label, isCluster);
 

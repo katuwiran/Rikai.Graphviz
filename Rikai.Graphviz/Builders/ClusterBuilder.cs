@@ -213,7 +213,7 @@ public class ClusterBuilder
 		return this;
 	}
 
-	public ClusterBuilder AddCluster(string id, string label, bool isCluster = true, Action<ClusterBuilder>? configure = null)
+	public ClusterBuilder AddCluster(string id, string label, Action<ClusterBuilder>? configure = null, bool isCluster = true)
 	{
 		var builder = new ClusterBuilder(id, label, isCluster);
 
