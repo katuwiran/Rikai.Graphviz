@@ -85,22 +85,22 @@ public class ClusterBuilder
 	}
 
 	// adding Nodes, refer to Types/Collections/GraphNodes for details
-	public ClusterBuilder AddNode(string id, NodeAttributes? attr = null)
+	public ClusterBuilder AddNode(string id, NodeAttributes? attributes = null)
 	{
-		if (attr is not null)
+		if (attributes is not null)
 		{
-			_cluster.Nodes.Add(new Node(id, attr));
+			_cluster.Nodes.Add(new Node(id, attributes));
 		}
 
 		_cluster.Nodes.Add(new Node(id));
 		return this;
 	}
 
-	public ClusterBuilder AddNode(Node node, NodeAttributes? attr = null)
+	public ClusterBuilder AddNode(Node node, NodeAttributes? attributes = null)
 	{
-		if (attr is not null)
+		if (attributes is not null)
 		{
-			node.Attributes = attr;
+			node.Attributes = attributes with { };
 			_cluster.Nodes.Add(node);
 		}
 
