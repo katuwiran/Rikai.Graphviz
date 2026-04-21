@@ -126,10 +126,10 @@ public class GraphFormatter
 
 		FormatClusterAttributes(innerIndent, cluster.Attributes);
 		FormatClusterNodeAttributes(currentIndent, cluster.Nodes.Attributes);
-		FormatClusterNodes(currentIndent, cluster.Nodes.Collection);
-		FormatClusterEdges(currentIndent, cluster.Edges.Collection);
 		FormatTables(currentIndent, cluster.HtmlTables);
 		FormatNestedClusters(currentIndent + 1, cluster.Clusters.Collection);
+		FormatClusterNodes(currentIndent, cluster.Nodes.Collection);
+		FormatClusterEdges(currentIndent, cluster.Edges.Collection);
 		_sb.AppendLine(baseIndent          + "}");
 	}
 
