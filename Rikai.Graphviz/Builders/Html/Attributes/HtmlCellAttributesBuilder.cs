@@ -4,6 +4,7 @@ public class HtmlCellAttributeBuilder
 {
 	private readonly HtmlCellAttributes _attr;
 
+	public HtmlCellAttributeBuilder() => _attr = new();
 	public HtmlCellAttributeBuilder(HtmlCellAttributes attr) => _attr = attr;
 
 	// @formatter:off

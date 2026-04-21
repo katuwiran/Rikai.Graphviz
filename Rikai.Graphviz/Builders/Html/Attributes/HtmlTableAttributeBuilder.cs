@@ -4,6 +4,7 @@ public class HtmlTableAttributeBuilder
 {
 	private readonly HtmlTableAttributes _attr;
 
+	public HtmlTableAttributeBuilder() => _attr = new();
 	public HtmlTableAttributeBuilder(HtmlTableAttributes attr) => _attr = attr;
 
 	// @formatter:off
