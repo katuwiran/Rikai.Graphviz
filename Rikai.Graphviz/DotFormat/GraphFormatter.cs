@@ -409,6 +409,7 @@ public class GraphFormatter
 		string innerIndent = Helpers.Indent(currentIndent + 1);
 
 		Append(baseIndent, "<TD");
+		Append(Helpers.FormatHtmlAttribute("PORT", cell.Port));
 		FormatCellAttributes(innerIndent, cell.Attributes);
 		Append(">");
 		Append($"{cell.Text}");
@@ -439,7 +440,6 @@ public class GraphFormatter
 		Append(Helpers.FormatHtmlAttribute("COLOR",       attr.Color));
 		Append(Helpers.FormatHtmlAttribute("COLSPAN",     attr.ColSpan));
 		Append(Helpers.FormatHtmlAttribute("HEIGHT",      attr.Height));
-		Append(Helpers.FormatHtmlAttribute("PORT",        attr.Port));
 		Append(Helpers.FormatHtmlAttribute("ROWSPAN",     attr.RowSpan));
 		Append(Helpers.FormatHtmlAttribute("STYLE",       attr.Style));
 		Append(Helpers.FormatHtmlAttribute("WIDTH",       attr.Width));

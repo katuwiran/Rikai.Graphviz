@@ -4,9 +4,9 @@ public class HtmlCellBuilder
 {
 	private readonly HtmlCell _cell;
 
-	public HtmlCellBuilder(string id, string? text)
+	public HtmlCellBuilder(string port, string? text)
 	{
-		_cell = new HtmlCell(id, text);
+		_cell = new HtmlCell(port, text);
 	}
 
 	public HtmlCellBuilder WithAttributes(HtmlCellAttributes attributes)

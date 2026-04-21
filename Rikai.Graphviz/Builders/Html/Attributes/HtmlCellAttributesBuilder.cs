@@ -16,7 +16,6 @@ public class HtmlCellAttributeBuilder
 	public HtmlCellAttributeBuilder Color(string    value) { _attr.Color       = value; return this; }
 	public HtmlCellAttributeBuilder ColSpan(int     value) { _attr.ColSpan     = value; return this; }
 	public HtmlCellAttributeBuilder Height(double   value) { _attr.Height      = value; return this; }
-	public HtmlCellAttributeBuilder Port(PortPos    value) { _attr.Port        = value; return this; }
 	public HtmlCellAttributeBuilder RowSpan(int     value) { _attr.RowSpan     = value; return this; }
 	public HtmlCellAttributeBuilder Style(HtmlStyle value) { _attr.Style       = value; return this; }
 	public HtmlCellAttributeBuilder Width(double    value) { _attr.Width       = value; return this; }
