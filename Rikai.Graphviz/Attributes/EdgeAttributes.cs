@@ -4,6 +4,7 @@ public record EdgeAttributes
 {
 	public ArrowType? ArrowHead     { get; set; }
 	public ArrowType? ArrowTail     { get; set; }
+	public bool?      Constraint    { get; set; }
 	public EdgeStyle? Style         { get; set; }
 	public string?    FontName      { get; set; }
 	public string?    Label         { get; set; }

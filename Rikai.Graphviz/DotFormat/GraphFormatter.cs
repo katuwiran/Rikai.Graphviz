@@ -130,7 +130,7 @@ public class GraphFormatter
 		FormatNestedClusters(currentIndent + 1, cluster.Clusters.Collection);
 		FormatClusterNodes(currentIndent, cluster.Nodes.Collection);
 		FormatClusterEdges(currentIndent, cluster.Edges.Collection);
-		_sb.AppendLine(baseIndent          + "}");
+		_sb.AppendLine(baseIndent + "}");
 	}
 
 	public void FormatNestedClusters(int currentIndent, List<Cluster> clusters)
@@ -297,12 +297,23 @@ public class GraphFormatter
 
 	internal void FormatEdgeAttributes(string innerIndent, EdgeAttributes attr)
 	{
-		AppendLine(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
-		AppendLine(innerIndent, Helpers.FormatAttribute("fontname",  attr.FontName));
-		AppendLine(innerIndent, Helpers.FormatAttribute("fontcolor", attr.FontColor));
-		AppendLine(innerIndent, Helpers.FormatAttribute("color",     attr.Color));
-		AppendLine(innerIndent, Helpers.FormatAttribute("arrowhead", attr.ArrowHead).ToLower());
-		AppendLine(innerIndent, Helpers.FormatAttribute("arrowtail", attr.ArrowTail).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("arrowhead",     attr.ArrowHead).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("arrowtail",     attr.ArrowTail).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("constraint",    attr.Constraint).ToLower());
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontname",      attr.FontName));
+		AppendLine(innerIndent, Helpers.FormatAttribute("label",         attr.Label));
+		AppendLine(innerIndent, Helpers.FormatAttribute("taillabel",     attr.FontColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("headlabel",     attr.FontColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("color",         attr.Color));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontcolor",     attr.FontColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("outlinecolor",  attr.OutlineColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("labeldistance", attr.LabelDistance));
+		AppendLine(innerIndent, Helpers.FormatAttribute("labelangle",    attr.LabelAngle));
+		AppendLine(innerIndent, Helpers.FormatAttribute("fontsize",      attr.FontSize));
+		AppendLine(innerIndent, Helpers.FormatAttribute("length",        attr.Length));
+		AppendLine(innerIndent, Helpers.FormatAttribute("minlength",     attr.MinLength));
+		AppendLine(innerIndent, Helpers.FormatAttribute("penwidth",      attr.PenWidth));
+		AppendLine(innerIndent, Helpers.FormatAttribute("decorate",      attr.Decorate));
 	}
 
 	internal void FormatNode(string baseIndent, string innerIndent, Node node)
