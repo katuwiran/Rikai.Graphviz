@@ -344,7 +344,15 @@ public class GraphFormatter
 
 			foreach (string id in ids)
 			{
-				result.Append($"\"{id}\" ");
+				if (id.Contains(":"))
+				{
+					Helpers.CheckEdgeIdForPorts(id, out var parsedId);
+					result.Append(parsedId);
+				}
+				else
+				{
+					result.Append($"\"{id}\" ");
+				}
 			}
 
 			return result.ToString();

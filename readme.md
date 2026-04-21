@@ -112,3 +112,4 @@ Lastly, as of **April 4, 2026**, this is a hierarchical diagram of the library, 
    other's usecases. I may revisit this in the future.
 4. By default, the collection for `Clusters` and `HtmlTables` are `Reverse()'d` because Graphviz, **by default renders the last entry first**. I don't why this is the case, but I
    opted to reverse the order for better intuition.
+5. Due to the way `port` is defined for Html Cells, in the API for edge declarations, I preferred to parse a string `table_name:port_name` as `"table_name":"port_name"` instead of `"table_name:portname"` in the generated dot (if you are not aware, this is the syntax to point to a specific cell on an Html table). Hence, if you want an edge with an `id` `"My Edge: Name"`, **you must escape it**, e.g. a string `"My Edge//: Name"`. Using the `Label` node attribute is an alternative, if you so wish.

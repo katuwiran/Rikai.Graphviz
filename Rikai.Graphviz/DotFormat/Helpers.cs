@@ -31,4 +31,47 @@ internal static class Helpers
 	{
 		return $" {name}=\"{value}\" ";
 	}
+
+	internal static void CheckEdgeIdForPorts(string id, out string result)
+	{
+		var  parts   = new List<string>();
+		var  current = new StringBuilder();
+		bool escape  = false;
+
+		foreach (char c in id)
+		{
+			if (escape)
+			{
+				// Add character literally after escape
+				current.Append(c);
+				escape = false;
+			}
+			else if (c == '\\')
+			{
+				escape = true;
+			}
+			else if (c == ':')
+			{
+				// Split only on unescaped colon
+				parts.Add(current.ToString());
+				current.Clear();
+			}
+			else
+			{
+				current.Append(c);
+			}
+		}
+
+		// Add last segment
+		parts.Add(current.ToString());
+
+		// Wrap each part in quotes
+		for (int i = 0; i < parts.Count; i++)
+		{
+			parts[i] = $"\"{parts[i]}\"";
+		}
+
+		// Join with colon
+		result = string.Join(":", parts);
+	}
 }
