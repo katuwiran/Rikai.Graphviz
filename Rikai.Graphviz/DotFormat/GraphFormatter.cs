@@ -292,6 +292,7 @@ public class GraphFormatter
 		AppendLine(innerIndent, Helpers.FormatAttribute("color",     attr.Color));
 		AppendLine(innerIndent, Helpers.FormatAttribute("label",     attr.Label));
 		AppendLine(innerIndent, Helpers.FormatAttribute("width",     attr.Width));
+		AppendLine(innerIndent, Helpers.FormatAttribute("height",    attr.Height));
 		AppendLine(innerIndent, Helpers.FormatAttribute("fontsize",  attr.FontSize));
 	}
 

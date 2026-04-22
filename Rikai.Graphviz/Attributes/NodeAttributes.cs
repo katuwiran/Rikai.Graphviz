@@ -10,6 +10,7 @@ public record NodeAttributes
 	public string?    Color     = null;
 	public string?    Label     = null;
 	public double?    Width     = null;
+	public double?    Height    = null;
 	public double?    FontSize  = null;
 
 	public bool IsEmpty => this == new NodeAttributes();

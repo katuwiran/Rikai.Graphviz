@@ -21,8 +21,9 @@ public class NodeAttributeBuilder
 	public NodeAttributeBuilder Label(string value)     { _attr.Label     = value; return this; }
 	public NodeAttributeBuilder Width(double value)     { _attr.Width     = value; return this; }
 	public NodeAttributeBuilder FontSize(double value)  { _attr.FontSize  = value; return this; }
-
+	public NodeAttributeBuilder Height(double value)    { _attr.Height    = value; return this; }
 	// @formatter:on
+	
 	public NodeAttributes Build()
 	{
 		return _attr;
