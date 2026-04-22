@@ -3,6 +3,7 @@ namespace Rikai.Graphviz.Builders;
 public class EdgeAttributeBuilder
 {
 	private readonly EdgeAttributes _attr;
+	public EdgeAttributeBuilder() => _attr = new EdgeAttributes();
 	public EdgeAttributeBuilder(EdgeAttributes attr) => _attr = attr;
 
 	// @formatter:off
@@ -24,4 +25,9 @@ public class EdgeAttributeBuilder
 	public EdgeAttributeBuilder PenWidth(double value)      { _attr.PenWidth      = value; return this; }
 	public EdgeAttributeBuilder Decorate(bool value)        { _attr.Decorate      = value; return this; }
 	// @formatter:on
+
+	public EdgeAttributes Build()
+	{
+		return _attr;
+	}
 }
