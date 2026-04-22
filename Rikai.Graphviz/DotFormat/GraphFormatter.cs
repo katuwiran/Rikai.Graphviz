@@ -315,6 +315,7 @@ public class GraphFormatter
 		AppendLine(innerIndent, Helpers.FormatAttribute("minlength",     attr.MinLength));
 		AppendLine(innerIndent, Helpers.FormatAttribute("penwidth",      attr.PenWidth));
 		AppendLine(innerIndent, Helpers.FormatAttribute("decorate",      attr.Decorate));
+		AppendLine(innerIndent, Helpers.FormatAttribute("dir",           attr.Dir).ToLower());
 	}
 
 	internal void FormatNode(string baseIndent, string innerIndent, Node node)

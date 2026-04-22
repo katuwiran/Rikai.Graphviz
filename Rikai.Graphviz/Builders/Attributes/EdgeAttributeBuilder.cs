@@ -24,6 +24,7 @@ public class EdgeAttributeBuilder
 	public EdgeAttributeBuilder MinLength(double value)     { _attr.MinLength     = value; return this; }
 	public EdgeAttributeBuilder PenWidth(double value)      { _attr.PenWidth      = value; return this; }
 	public EdgeAttributeBuilder Decorate(bool value)        { _attr.Decorate      = value; return this; }
+	public EdgeAttributeBuilder Dir(EdgeDirection value)    { _attr.Dir           = value; return this; }
 	// @formatter:on
 
 	public EdgeAttributes Build()
