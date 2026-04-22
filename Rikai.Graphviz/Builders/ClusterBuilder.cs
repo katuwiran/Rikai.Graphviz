@@ -141,57 +141,246 @@ public class ClusterBuilder
 	}
 
 	// adding Edges, refer to Types/Collections/GraphEdges for details
-	public ClusterBuilder AddEdge(Node from, Node to)
+	public ClusterBuilder AddEdge(Node from, Node to, Action<EdgeAttributeBuilder> configure)
 	{
-		_cluster.Edges.Add(new Edge(from, to));
-		return this;
-	}
+		Edge edge = new(from, to);
 
-	public ClusterBuilder AddEdge(Node from, IEnumerable<Node> to)
-	{
-		_cluster.Edges.Add(new Edge(from, to));
-		return this;
-	}
+		var builder = new EdgeAttributeBuilder(edge.Attributes);
+		configure(builder);
 
-	public ClusterBuilder AddEdge(IEnumerable<Node> from, IEnumerable<Node> to)
-	{
-		_cluster.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public ClusterBuilder AddEdge(IEnumerable<Node> from, Node to)
-	{
-		_cluster.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public ClusterBuilder AddEdge(string from, string to)
-	{
-		_cluster.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public ClusterBuilder AddEdge(string from, IEnumerable<string> to)
-	{
-		_cluster.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public ClusterBuilder AddEdge(IEnumerable<string> from, IEnumerable<string> to)
-	{
-		_cluster.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public ClusterBuilder AddEdge(IEnumerable<string> from, string to)
-	{
-		_cluster.Edges.Add(new Edge(from, to));
-		return this;
-	}
-
-	public ClusterBuilder AddEdge(Edge edge)
-	{
 		_cluster.Edges.Add(edge);
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(Node from, Node to, EdgeAttributes? attributes = null)
+	{
+		if (attributes is not null)
+		{
+			Edge edge = new(from, to, attributes with { });
+			_cluster.Edges.Add(edge);
+		}
+		else
+		{
+			Edge edge = new(from, to);
+			_cluster.Edges.Add(edge);
+		}
+
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(Node from, IEnumerable<Node> to, Action<EdgeAttributeBuilder> configure)
+	{
+		Edge edge = new(from, to);
+
+		var builder = new EdgeAttributeBuilder(edge.Attributes);
+		configure(builder);
+
+		_cluster.Edges.Add(edge);
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(Node from, IEnumerable<Node> to, EdgeAttributes? attributes = null)
+	{
+		if (attributes is not null)
+		{
+			Edge edge = new(from, to, attributes with { });
+			_cluster.Edges.Add(edge);
+		}
+		else
+		{
+			Edge edge = new(from, to);
+			_cluster.Edges.Add(edge);
+		}
+
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(IEnumerable<Node> from, IEnumerable<Node> to, Action<EdgeAttributeBuilder> configure)
+	{
+		Edge edge = new(from, to);
+
+		var builder = new EdgeAttributeBuilder(edge.Attributes);
+		configure(builder);
+
+		_cluster.Edges.Add(edge);
+		return this;
+	}
+
+
+	public ClusterBuilder AddEdge(IEnumerable<Node> from, IEnumerable<Node> to, EdgeAttributes? attributes = null)
+	{
+		if (attributes is not null)
+		{
+			Edge edge = new(from, to, attributes with { });
+			_cluster.Edges.Add(edge);
+		}
+		else
+		{
+			Edge edge = new(from, to);
+			_cluster.Edges.Add(edge);
+		}
+
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(IEnumerable<Node> from, Node to, Action<EdgeAttributeBuilder> configure)
+	{
+		Edge edge = new(from, to);
+
+		var builder = new EdgeAttributeBuilder(edge.Attributes);
+		configure(builder);
+
+		_cluster.Edges.Add(edge);
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(IEnumerable<Node> from, Node to, EdgeAttributes? attributes = null)
+	{
+		if (attributes is not null)
+		{
+			Edge edge = new(from, to, attributes with { });
+			_cluster.Edges.Add(edge);
+		}
+		else
+		{
+			Edge edge = new(from, to);
+			_cluster.Edges.Add(edge);
+		}
+
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(string from, string to, Action<EdgeAttributeBuilder> configure)
+	{
+		Edge edge = new(from, to);
+
+		var builder = new EdgeAttributeBuilder(edge.Attributes);
+		configure(builder);
+
+		_cluster.Edges.Add(edge);
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(string from, string to, EdgeAttributes? attributes = null)
+	{
+		if (attributes is not null)
+		{
+			Edge edge = new(from, to, attributes with { });
+			_cluster.Edges.Add(edge);
+		}
+		else
+		{
+			Edge edge = new(from, to);
+			_cluster.Edges.Add(edge);
+		}
+
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(string from, IEnumerable<string> to, Action<EdgeAttributeBuilder> configure)
+	{
+		Edge edge = new(from, to);
+
+		var builder = new EdgeAttributeBuilder(edge.Attributes);
+		configure(builder);
+
+		_cluster.Edges.Add(edge);
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(string from, IEnumerable<string> to, EdgeAttributes? attributes = null)
+	{
+		if (attributes is not null)
+		{
+			Edge edge = new(from, to, attributes with { });
+			_cluster.Edges.Add(edge);
+		}
+		else
+		{
+			Edge edge = new(from, to);
+			_cluster.Edges.Add(edge);
+		}
+
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(IEnumerable<string> from, IEnumerable<string> to, Action<EdgeAttributeBuilder> configure)
+	{
+		Edge edge = new(from, to);
+
+		var builder = new EdgeAttributeBuilder(edge.Attributes);
+		configure(builder);
+
+		_cluster.Edges.Add(edge);
+		return this;
+	}
+
+
+	public ClusterBuilder AddEdge(IEnumerable<string> from, IEnumerable<string> to, EdgeAttributes? attributes = null)
+	{
+		if (attributes is not null)
+		{
+			Edge edge = new(from, to, attributes with { });
+			_cluster.Edges.Add(edge);
+		}
+		else
+		{
+			Edge edge = new(from, to);
+			_cluster.Edges.Add(edge);
+		}
+
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(IEnumerable<string> from, string to, Action<EdgeAttributeBuilder> configure)
+	{
+		Edge edge = new(from, to);
+
+		var builder = new EdgeAttributeBuilder(edge.Attributes);
+		configure(builder);
+
+		_cluster.Edges.Add(edge);
+		return this;
+	}
+
+
+	public ClusterBuilder AddEdge(IEnumerable<string> from, string to, EdgeAttributes? attributes = null)
+	{
+		if (attributes is not null)
+		{
+			Edge edge = new(from, to, attributes with { });
+			_cluster.Edges.Add(edge);
+		}
+		else
+		{
+			Edge edge = new(from, to);
+			_cluster.Edges.Add(edge);
+		}
+
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(Edge edge, Action<EdgeAttributeBuilder> configure)
+	{
+		var builder = new EdgeAttributeBuilder(edge.Attributes);
+		configure(builder);
+
+		_cluster.Edges.Add(edge);
+		return this;
+	}
+
+	public ClusterBuilder AddEdge(Edge edge, EdgeAttributes? attributes = null)
+	{
+		if (attributes is not null)
+		{
+			edge.Attributes = attributes with { };
+			_cluster.Edges.Add(edge);
+		}
+		else
+		{
+			_cluster.Edges.Add(edge);
+		}
+
 		return this;
 	}
 
