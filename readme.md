@@ -10,7 +10,7 @@ I've seen and even used other projects, but personally I prefer to have self-evi
 - **strongly typed** wrappers for Graphviz objects and attributes
 - it's possible to **define edges** with `1:N`, `N:1`, `N:M` relationships
 - **attributes** for `Graph`, `Node`, `Edge`, and `Cluster` are **supported**
-- You can create a definition for `NodeAttributes` and you can easly **reuse them** using C# `record` semantics (the reason why I made this in the first place).
+- You can create a definition for `NodeAttributes` and you can easily **reuse them** using C# `record` semantics (the reason why I made this in the first place).
 - **Fluent API** is supported (but YMMV whether it's nice to use)
 - **Clusters** are fully supported.
 - **Nested Clusters** are fully supported. Go ham.
@@ -98,10 +98,16 @@ digraph{
 }
 ```
 which then produces this diagram:
+
 ![readme diagram](./assets/readme.png)
 
-Lastly, as of **April 4, 2026**, this is a hierarchical diagram of the library, as defined on `Samples/Graphs/LibraryStructure.cs`
+As of **April 4, 2026**, this is a hierarchical diagram of the library, as defined on `Samples/Graphs/LibraryStructure.cs`
+
 ![library diagram](./assets/library.png)
+
+Here is something cool you can do with this codebase.
+
+![readme diagram](./assets/cool.png)
 
 ### Caveats and Quirks
 
@@ -113,3 +119,4 @@ Lastly, as of **April 4, 2026**, this is a hierarchical diagram of the library, 
 4. By default, the collection for `Clusters` and `HtmlTables` are `Reverse()'d` because Graphviz, **by default renders the last entry first**. I don't why this is the case, but I
    opted to reverse the order for better intuition.
 5. Due to the way `port` is defined for Html Cells, in the API for edge declarations, I preferred to parse a string `table_name:port_name` as `"table_name":"port_name"` instead of `"table_name:portname"` in the generated dot (if you are not aware, this is the syntax to point to a specific cell on an Html table). Hence, if you want an edge with an `id` `"My Edge: Name"`, **you must escape it**, e.g. a string `"My Edge//: Name"`. Using the `Label` node attribute is an alternative, if you so wish.
+6. API for Html `FONT` and other tags is currently rudimentary. I'll add them as I need them, if ever.
