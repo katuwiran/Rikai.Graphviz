@@ -38,6 +38,12 @@ public class GraphBuilder
 		return this;
 	}
 
+	public GraphBuilder WithAttributes(GraphAttributes attributes)
+	{
+		_graph.Attributes = attributes with { };
+		return this;
+	}
+
 	/// <summary>
 	/// Allows the user to configure the Default Node Attributes.
 	/// This is the <c>node [attr=value]</c> syntax on the dot language.
@@ -54,6 +60,12 @@ public class GraphBuilder
 		return this;
 	}
 
+	public GraphBuilder WithNodeAttributes(NodeAttributes attributes)
+	{
+		_graph.Nodes.Attributes = attributes with { };
+		return this;
+	}
+
 	/// <summary>
 	/// Allows the user to configure the Default Edge Attributes.
 	/// This is the `edge [attr=value]` syntax on the dot language.
@@ -64,6 +76,12 @@ public class GraphBuilder
 	{
 		var builder = new EdgeAttributeBuilder(_graph.Edges.Attributes);
 		configure(builder);
+		return this;
+	}
+
+	public GraphBuilder WithEdgeAttributes(EdgeAttributes attributes)
+	{
+		_graph.Edges.Attributes = attributes with { };
 		return this;
 	}
 
