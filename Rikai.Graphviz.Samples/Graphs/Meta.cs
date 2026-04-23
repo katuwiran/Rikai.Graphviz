@@ -1,4 +1,5 @@
 using Rikai.Graphviz.Builders;
+using Rikai.Graphviz.Extensions;
 
 namespace Rikai.Graphviz.Samples;
 
@@ -8,6 +9,9 @@ public partial class Graphs
 	{
 		string font = "Cochineal";
 
+		string label = $"""
+			Some cool stuff to do.
+			""";
 
 		ArrowType arrowHead = ArrowType.Vee;
 
@@ -150,6 +154,11 @@ public partial class Graphs
 				.Build()
 		);
 
+		var fontColors = (
+			Finished: colors.Green,
+			Ongoing: colors.Plum
+		);
+
 		var graph = new GraphBuilder()
 				.WithAttributes(graph => graph
 					.Label(label)
@@ -175,7 +184,7 @@ public partial class Graphs
 						.AddNode("graphviz_hidden", nodes.Hidden)
 						.AddHtml("t_graphviz", html => html
 							.WithAttributes(tableAttr, nodes.Table)
-							.AddRow(row => row.AddCell("visualization", "Visualization", cells.Finished))
+							.AddRow(row => row.AddCell("visualization", "Visualization".FontColor(fontColors.Finished), cells.Finished))
 						)
 					)
 					// Mikotoba
@@ -184,10 +193,10 @@ public partial class Graphs
 						.AddNode("mikotoba_hidden", nodes.Hidden)
 						.AddHtml("t_mikotoba", html => html
 							.WithAttributes(tableAttr, nodes.Table)
-							.AddRow(row => row.AddCell("todo",     "To Do List", cells.Ongoing))
-							.AddRow(row => row.AddCell("priority", "Triaging",   cells.Default))
-							.AddRow(row => row.AddCell("kanban",   "Kanban",     cells.Default))
-							.AddRow(row => row.AddCell("projects", "Projects",   cells.Default))
+							.AddRow(row => row.AddCell("todo",     "To Do List".FontColor(fontColors.Ongoing), cells.Ongoing))
+							.AddRow(row => row.AddCell("priority", "Triaging",                                 cells.Default))
+							.AddRow(row => row.AddCell("kanban",   "Kanban",                                   cells.Default))
+							.AddRow(row => row.AddCell("projects", "Projects",                                 cells.Default))
 						)
 					)
 					// Tomoya
@@ -329,8 +338,8 @@ public partial class Graphs
 				.AddEdge("time_awareness_hidden", "self_direction_hidden", edges.Hidden)
 				.AddEdge("self_direction_hidden", "finances_hidden",       edges.Hidden)
 				// Graph Edges
-				.AddEdge("Start Here",               "t_graphviz:visualization", edges.Done with { Label = "took 4 years" })
-				.AddEdge("t_graphviz:visualization", "t_mikotoba:todo",          edges.Ongoing with { Label = "let's see" })
+				.AddEdge("Start Here",               "t_graphviz:visualization", edges.Done with { Label = "took 4 years\n(2026.04.23)" })
+				.AddEdge("t_graphviz:visualization", "t_mikotoba:todo",          edges.Ongoing with { Label = "let's see how long" })
 				.AddNode("Start Here", nodes.Finished)
 			;
 

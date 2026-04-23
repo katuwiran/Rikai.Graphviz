@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Rikai.Graphviz.Extensions\Rikai.Graphviz.Extensions.csproj" />
         <ProjectReference Include="..\Rikai.Graphviz\Rikai.Graphviz.csproj"/>
     </ItemGroup>
 
