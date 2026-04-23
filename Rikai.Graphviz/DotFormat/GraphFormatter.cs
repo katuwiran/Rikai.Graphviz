@@ -303,8 +303,8 @@ public class GraphFormatter
 		AppendLine(innerIndent, Helpers.FormatAttribute("constraint",    attr.Constraint).ToLower());
 		AppendLine(innerIndent, Helpers.FormatAttribute("fontname",      attr.FontName));
 		AppendLine(innerIndent, Helpers.FormatAttribute("label",         attr.Label));
-		AppendLine(innerIndent, Helpers.FormatAttribute("taillabel",     attr.FontColor));
-		AppendLine(innerIndent, Helpers.FormatAttribute("headlabel",     attr.FontColor));
+		AppendLine(innerIndent, Helpers.FormatAttribute("taillabel",     attr.TailLabel));
+		AppendLine(innerIndent, Helpers.FormatAttribute("headlabel",     attr.HeadLabel));
 		AppendLine(innerIndent, Helpers.FormatAttribute("color",         attr.Color));
 		AppendLine(innerIndent, Helpers.FormatAttribute("fontcolor",     attr.FontColor));
 		AppendLine(innerIndent, Helpers.FormatAttribute("outlinecolor",  attr.OutlineColor));

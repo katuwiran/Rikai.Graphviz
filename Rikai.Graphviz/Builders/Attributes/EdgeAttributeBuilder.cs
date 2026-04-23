@@ -20,6 +20,7 @@ public class EdgeAttributeBuilder
 	public EdgeAttributeBuilder LabelDistance(double value) { _attr.LabelDistance = value; return this; }
 	public EdgeAttributeBuilder LabelAngle(double value)    { _attr.LabelAngle    = value; return this; }
 	public EdgeAttributeBuilder FontSize(double value)      { _attr.FontSize      = value; return this; }
+	public EdgeAttributeBuilder FontColor(string value)     { _attr.FontColor     = value; return this; }
 	public EdgeAttributeBuilder Length(double value)        { _attr.Length        = value; return this; }
 	public EdgeAttributeBuilder MinLength(double value)     { _attr.MinLength     = value; return this; }
 	public EdgeAttributeBuilder PenWidth(double value)      { _attr.PenWidth      = value; return this; }
