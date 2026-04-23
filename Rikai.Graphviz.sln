@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rikai.Graphviz.Binary", "Ri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rikai.Graphviz.Samples", "Rikai.Graphviz.Samples\Rikai.Graphviz.Samples.csproj", "{AA6FCC1B-A825-417E-BE80-AD5414104C93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rikai.Graphviz.Extensions", "Rikai.Graphviz.Extensions\Rikai.Graphviz.Extensions.csproj", "{1D919AAF-1532-408D-8808-775ED8700ACD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{AA6FCC1B-A825-417E-BE80-AD5414104C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA6FCC1B-A825-417E-BE80-AD5414104C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA6FCC1B-A825-417E-BE80-AD5414104C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D919AAF-1532-408D-8808-775ED8700ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D919AAF-1532-408D-8808-775ED8700ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D919AAF-1532-408D-8808-775ED8700ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D919AAF-1532-408D-8808-775ED8700ACD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
