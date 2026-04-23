@@ -334,9 +334,31 @@ public class GraphFormatter
 
 	internal void FormatEdge(string baseIndent, string innerIndent, Edge edge)
 	{
-		string edgeStr = "{" + FormatIds(edge.FromNodeIds) + "}"
-			+ $" {_edgeSymbol} "
-			+ "{" + FormatIds(edge.ToNodeIds) + "}";
+		string edgeStr;
+		string edgeFrom;
+		string edgeTo;
+
+		if (edge.FromNodeIds.Count == 1 || edge.FromNodes.Count == 1)
+		{
+			edgeFrom = FormatIds(edge.FromNodeIds);
+		}
+		else
+		{
+			edgeFrom = "{ " + FormatIds(edge.FromNodeIds) + "} ";
+		}
+
+		if (edge.ToNodeIds.Count == 1 || edge.ToNodes.Count == 1)
+		{
+			edgeTo = " " + FormatIds(edge.ToNodeIds);
+		}
+		else
+		{
+			edgeTo = " {" + FormatIds(edge.ToNodeIds) + "}";
+		}
+
+		edgeStr = edgeFrom
+			+ $"{_edgeSymbol}"
+			+ edgeTo;
 
 		if (edge.Attributes.IsEmpty)
 		{
@@ -360,7 +382,7 @@ public class GraphFormatter
 				if (id.Contains(":"))
 				{
 					Helpers.CheckEdgeIdForPorts(id, out var parsedId);
-					result.Append(parsedId);
+					result.Append(parsedId + " ");
 				}
 				else
 				{
